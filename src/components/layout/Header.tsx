@@ -57,22 +57,22 @@ export default function Header() {
       <header
         className={`fixed top-[72px] md:top-[36px] left-0 right-0 z-50 transition-all duration-300 border-t-0 rounded-b-xl md:rounded-b-none ${
           isScrolled
-            ? 'bg-background/98 backdrop-blur-lg shadow-sm'
-            : 'bg-background/80 backdrop-blur-sm'
+            ? 'bg-background/98 md:bg-primary/95 backdrop-blur-lg shadow-md shadow-black/10'
+            : 'bg-background/80 md:bg-primary/90 backdrop-blur-sm'
         }`}
       >
         <nav className="container-custom">
           <div className="flex items-center justify-between py-4 md:py-0 md:h-[72px]">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-primary flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
-                <span className="text-primary-foreground font-heading font-bold text-base md:text-lg">VO</span>
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-primary md:bg-white/20 flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
+                <span className="text-primary-foreground md:text-white font-heading font-bold text-base md:text-lg">VO</span>
               </div>
               <div className="hidden sm:block">
-                <span className="font-heading font-bold text-[17px] text-foreground block leading-tight">
+                <span className="font-heading font-bold text-[17px] text-foreground md:text-white block leading-tight">
                   Vet Option
                 </span>
-                <span className="text-xs text-muted-foreground">Timișoara</span>
+                <span className="text-xs text-muted-foreground md:text-white/70">Timișoara</span>
               </div>
             </Link>
 
@@ -84,8 +84,8 @@ export default function Header() {
                   to={item.href}
                   className={`px-3.5 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
                     location.pathname === item.href
-                      ? 'text-primary bg-primary-light'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                      ? 'text-primary bg-white'
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {item.name}
@@ -96,7 +96,7 @@ export default function Header() {
             {/* CTA button */}
             <div className="hidden md:flex items-center gap-3">
               <Link to="/contact">
-                <Button className="btn-accent text-sm px-5 py-2.5 h-auto rounded-xl">
+                <Button className="bg-white text-primary hover:bg-white/90 text-sm px-5 py-2.5 h-auto rounded-xl font-semibold shadow-sm">
                   Programează consultație
                 </Button>
               </Link>
