@@ -77,15 +77,15 @@ export default function Header() {
             </Link>
 
             {/* Desktop navigation */}
-            <div className="hidden lg:flex items-center gap-0.5">
+            <div className="hidden lg:flex items-center gap-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`px-3.5 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
+                  className={`px-4 py-1.5 text-sm transition-all duration-200 ${
                     location.pathname === item.href
-                      ? 'text-primary bg-white'
-                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                      ? 'bg-white text-emerald-800 font-semibold rounded-full'
+                      : 'text-white/75 hover:text-white'
                   }`}
                 >
                   {item.name}
