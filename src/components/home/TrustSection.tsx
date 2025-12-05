@@ -1,25 +1,25 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Star, Award, Clock } from 'lucide-react';
+import { Star, Heart, Clock } from 'lucide-react';
 
 const trustItems = [
   {
     icon: Star,
-    title: 'Peste 100+ recenzii',
-    subtitle: 'de 5 stele',
+    title: 'Peste 100 de recenzii excelente',
+    subtitle: 'Majoritatea de 5 stele pe Google și Facebook',
     color: 'text-amber-500',
     bgColor: 'bg-amber-50',
   },
   {
-    icon: Award,
-    title: 'Laureat',
-    subtitle: 'Firma de Aur',
-    color: 'text-primary',
-    bgColor: 'bg-primary-light',
+    icon: Heart,
+    title: 'Mii de pacienți îngrijiți',
+    subtitle: 'De la consultații de rutină la cazuri critice',
+    color: 'text-rose-500',
+    bgColor: 'bg-rose-50',
   },
   {
     icon: Clock,
     title: 'Urgențe NON STOP',
-    subtitle: '24/7 în Timișoara',
+    subtitle: 'Disponibili 24/7 în Timișoara',
     color: 'text-teal-600',
     bgColor: 'bg-teal-50',
   },
@@ -36,8 +36,8 @@ export default function TrustSection() {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-border/30">
-          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
+        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-border/30">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
             {trustItems.map((item, index) => (
               <div
                 key={item.title}
@@ -50,15 +50,15 @@ export default function TrustSection() {
                   <item.icon className={`w-8 h-8 ${item.color}`} />
                 </div>
                 <div>
-                  <h3 className="font-heading font-bold text-lg text-foreground">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.subtitle}</p>
+                  <h3 className="font-heading font-bold text-lg text-foreground leading-tight">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm mt-1">{item.subtitle}</p>
                 </div>
               </div>
             ))}
           </div>
           
-          <p className="text-center text-muted-foreground mt-8 pt-8 border-t border-border/50 max-w-2xl mx-auto">
-            Proprietarii ne aleg pentru profesionalism, empatie și rezultate excelente în cazuri critice.
+          <p className="text-center text-muted-foreground mt-10 pt-8 border-t border-border/50 max-w-3xl mx-auto">
+            Proprietarii ne aleg pentru combinația dintre medicină veterinară avansată, empatie și comunicare clară, mai ales în momentele critice.
           </p>
         </div>
       </div>
