@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Phone, MapPin, Mail, Clock, Instagram, Facebook } from 'lucide-react';
+import { Phone, MapPin, Clock, Instagram, Facebook } from 'lucide-react';
+import logoVetOption from '@/assets/logo-vet-option.png';
 
 const quickLinks = [
   { name: 'Acasă', href: '/' },
@@ -27,9 +28,11 @@ export default function Footer() {
           {/* Brand column */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-heading font-bold text-xl">VO</span>
-              </div>
+              <img 
+                src={logoVetOption} 
+                alt="Vet Option Timișoara Logo" 
+                className="w-12 h-12 rounded-xl object-contain"
+              />
               <div>
                 <span className="font-heading font-bold text-lg text-white block leading-tight">
                   Vet Option
