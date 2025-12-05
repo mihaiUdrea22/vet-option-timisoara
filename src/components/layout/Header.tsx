@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <>
       {/* Top Bar - Emergency Info */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground">
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground rounded-t-xl">
         <div className="container-custom">
           <div className="flex items-center justify-between py-2 text-sm">
             <div className="flex items-center gap-2">
@@ -55,7 +55,7 @@ export default function Header() {
 
       {/* Main Header */}
       <header
-        className={`fixed top-[40px] left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-[36px] left-0 right-0 z-50 transition-all duration-300 border-t-0 ${
           isScrolled
             ? 'bg-background/98 backdrop-blur-lg shadow-sm'
             : 'bg-background/80 backdrop-blur-sm'
