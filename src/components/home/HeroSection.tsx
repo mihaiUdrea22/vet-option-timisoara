@@ -18,7 +18,7 @@ export default function HeroSection() {
       </div>
 
       <div className="container-custom relative z-10 py-16 md:py-20">
-        <div className="max-w-2xl lg:max-w-3xl">
+        <div className="max-w-3xl lg:max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/15 backdrop-blur-sm text-white rounded-full text-sm font-medium mb-8 animate-fade-in-up">
             <span className="w-2.5 h-2.5 bg-accent rounded-full animate-pulse-soft" />
@@ -33,13 +33,13 @@ export default function HeroSection() {
           </h1>
 
           {/* Subheadline */}
-          <p className="text-lg sm:text-xl text-white/90 max-w-xl leading-relaxed mb-10 animate-fade-in-up delay-200">
+          <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-in-up delay-200">
             Chirurgie avansată, ATI și îngrijire completă pentru câini și pisici, 
             într-o clinică unde fiecare pacient este tratat ca un membru al familiei.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-10 animate-fade-in-up delay-300">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10 animate-fade-in-up delay-300">
             <a href="tel:+40723143405">
               <Button className="btn-accent w-full sm:w-auto text-base px-8 py-4 h-auto gap-3 rounded-2xl shadow-accent">
                 <Phone className="w-5 h-5" />
@@ -55,7 +55,7 @@ export default function HeroSection() {
           </div>
 
           {/* Info badges */}
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 animate-fade-in-up delay-400">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 animate-fade-in-up delay-400">
             <div className="flex items-center gap-3 text-white/90">
               <div className="w-10 h-10 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center">
                 <MapPin className="w-5 h-5" />
