@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logoVetOption from '@/assets/logo-vet-option.png';
 
 const navigation = [
   { name: 'Acasă', href: '/' },
@@ -64,9 +65,11 @@ export default function Header() {
           <div className="flex items-center justify-between py-4 md:py-0 md:h-[72px]">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-primary flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
-                <span className="text-primary-foreground font-heading font-bold text-base md:text-lg">VO</span>
-              </div>
+              <img 
+                src={logoVetOption} 
+                alt="Vet Option Timișoara Logo" 
+                className="w-10 h-10 md:w-11 md:h-11 rounded-xl object-contain group-hover:scale-105 transition-transform"
+              />
               <div className="hidden sm:block">
                 <span className="font-heading font-bold text-[17px] text-foreground block leading-tight">
                   Vet Option
