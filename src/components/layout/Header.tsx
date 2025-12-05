@@ -9,7 +9,6 @@ const navigation = [
   { name: 'Servicii', href: '/servicii' },
   { name: 'Urgențe 24/7', href: '/urgente' },
   { name: 'Echipa', href: '/echipa' },
-  { name: 'Recenzii', href: '/recenzii' },
   { name: 'Articole', href: '/articole' },
   { name: 'Galerie', href: '/galerie' },
   { name: 'Contact', href: '/contact' },
