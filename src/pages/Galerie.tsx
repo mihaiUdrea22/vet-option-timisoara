@@ -32,13 +32,14 @@ export default function Galerie() {
       </Helmet>
       <Layout>
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-teal-50 to-white">
+        <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/50 to-white">
           <div className="container-custom">
             <div className="max-w-3xl mx-auto text-center">
-              <span className="text-primary font-medium text-sm uppercase tracking-wider">Galerie</span>
+              <span className="section-label">Galerie</span>
               <h1 className="section-title mt-4">Momente din clinică</h1>
               <p className="section-subtitle mx-auto mt-6">
                 Pacienți fericiți, echipă dedicată și momente speciale din activitatea noastră de zi cu zi.
+                Urmărește-ne pe rețelele sociale pentru mai multe povești.
               </p>
             </div>
           </div>
@@ -47,11 +48,11 @@ export default function Galerie() {
         {/* Gallery grid */}
         <section className="section-padding bg-white" ref={ref}>
           <div className="container-custom">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
               {galleryImages.map((image, index) => (
                 <div
                   key={index}
-                  className={`relative aspect-square rounded-2xl overflow-hidden group transition-all duration-500 ${
+                  className={`relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden group transition-all duration-500 ${
                     isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                   }`}
                   style={{ transitionDelay: `${index * 30}ms` }}
@@ -74,7 +75,7 @@ export default function Galerie() {
         </section>
 
         {/* Social CTA */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-gray-50/70">
           <div className="container-custom">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Instagram */}
@@ -82,17 +83,17 @@ export default function Galerie() {
                 href="https://www.instagram.com/vetoptionclinic"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 rounded-3xl p-8 text-white group hover:scale-[1.02] transition-transform"
+                className="bg-gradient-to-br from-purple-500 via-pink-500 to-orange-400 rounded-3xl p-8 md:p-10 text-white group hover:scale-[1.02] transition-all duration-300 shadow-lg"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <Instagram className="w-12 h-12" />
+                <div className="flex items-center justify-between mb-5">
+                  <Instagram className="w-14 h-14" />
                   <ExternalLink className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h3 className="font-heading font-bold text-2xl mb-2">Urmărește-ne pe Instagram</h3>
-                <p className="text-white/90 mb-4">
+                <h3 className="font-heading font-bold text-2xl mb-3">Urmărește-ne pe Instagram</h3>
+                <p className="text-white/90 mb-5 text-[15px] leading-relaxed">
                   Povești de zi cu zi din clinică, pacienți fericiți și sfaturi utile pentru animalul tău.
                 </p>
-                <span className="text-white/80">@vetoptionclinic</span>
+                <span className="text-white/80 font-medium">@vetoptionclinic</span>
               </a>
 
               {/* Facebook */}
@@ -100,17 +101,17 @@ export default function Galerie() {
                 href="https://www.facebook.com/share/19ghUWcqjr/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#1877f2] rounded-3xl p-8 text-white group hover:scale-[1.02] transition-transform"
+                className="bg-[#1877f2] rounded-3xl p-8 md:p-10 text-white group hover:scale-[1.02] transition-all duration-300 shadow-lg"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <Facebook className="w-12 h-12" />
+                <div className="flex items-center justify-between mb-5">
+                  <Facebook className="w-14 h-14" />
                   <ExternalLink className="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <h3 className="font-heading font-bold text-2xl mb-2">Urmărește-ne pe Facebook</h3>
-                <p className="text-white/90 mb-4">
+                <h3 className="font-heading font-bold text-2xl mb-3">Urmărește-ne pe Facebook</h3>
+                <p className="text-white/90 mb-5 text-[15px] leading-relaxed">
                   Noutăți, evenimente speciale și informații importante pentru comunitatea noastră.
                 </p>
-                <span className="text-white/80">Vet Option Timișoara</span>
+                <span className="text-white/80 font-medium">Vet Option Timișoara</span>
               </a>
             </div>
           </div>

@@ -7,21 +7,21 @@ const steps = [
     number: '01',
     icon: Phone,
     title: 'Păstrează-ți calmul și sună imediat',
-    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili NON STOP.',
+    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili NON STOP, zi și noapte.',
     color: 'bg-red-500',
   },
   {
     number: '02',
     icon: MessageCircle,
     title: 'Descrie pe scurt simptomele',
-    description: 'Spune-ne ce se întâmplă ca să ne pregătim pentru sosirea ta.',
+    description: 'Spune-ne ce se întâmplă și urmează indicațiile medicului nostru de gardă.',
     color: 'bg-amber-500',
   },
   {
     number: '03',
     icon: Car,
     title: 'Pornește către clinică',
-    description: 'Vino cât mai repede, iar noi te așteptăm pregătiți să intervenim.',
+    description: 'Vino cât mai repede la noi, echipa noastră te așteaptă pregătită să intervină.',
     color: 'bg-primary',
   },
 ];
@@ -32,24 +32,24 @@ export default function EmergencyGuideSection() {
   return (
     <section className="section-padding bg-primary text-primary-foreground relative overflow-hidden">
       {/* Decorative elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/5 rounded-full -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/3" />
 
       <div className="container-custom relative z-10" ref={ref}>
         {/* Header */}
         <div 
-          className={`text-center mb-16 transition-all duration-700 ${
+          className={`text-center mb-16 lg:mb-20 transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="text-white/80 font-medium text-sm uppercase tracking-wider">Ghid de urgență</span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mt-4">
+          <span className="text-white/70 font-semibold text-sm uppercase tracking-widest mb-4 block">Ghid de urgență</span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold">
             Ce faci în caz de urgență?
           </h2>
         </div>
 
         {/* Steps */}
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-12 mb-14">
           {steps.map((step, index) => (
             <div
               key={step.number}
@@ -58,12 +58,12 @@ export default function EmergencyGuideSection() {
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <div className={`w-20 h-20 ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg`}>
+              <div className={`w-20 h-20 ${step.color} rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg`}>
                 <step.icon className="w-10 h-10 text-white" />
               </div>
-              <span className="text-white/50 font-heading font-bold text-5xl block mb-2">{step.number}</span>
+              <span className="text-white/30 font-heading font-bold text-6xl block mb-3">{step.number}</span>
               <h3 className="font-heading font-semibold text-xl mb-3">{step.title}</h3>
-              <p className="text-white/80">{step.description}</p>
+              <p className="text-white/80 leading-relaxed">{step.description}</p>
             </div>
           ))}
         </div>
@@ -75,11 +75,11 @@ export default function EmergencyGuideSection() {
           }`}
           style={{ transitionDelay: '500ms' }}
         >
-          <a href="tel:+40723143405" className="btn-accent px-8 py-4 text-base">
+          <a href="tel:+40723143405" className="btn-accent px-9 py-4 text-base">
             <Phone className="w-5 h-5" />
             Sună acum: +40 723 143 405
           </a>
-          <Link to="/contact" className="btn-white px-8 py-4 text-base">
+          <Link to="/contact" className="btn-white px-9 py-4 text-base">
             <MapPin className="w-5 h-5" />
             Vezi cum ajungi la noi
           </Link>

@@ -84,37 +84,40 @@ export default function Recenzii() {
       </Helmet>
       <Layout>
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-amber-50 to-white">
+        <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-amber-50/50 to-white">
           <div className="container-custom">
             <div className="max-w-3xl mx-auto text-center">
-              <span className="text-primary font-medium text-sm uppercase tracking-wider">Recenzii</span>
+              <span className="section-label">Recenzii</span>
               <h1 className="section-title mt-4">Ce spun proprietarii despre noi</h1>
               <p className="section-subtitle mx-auto mt-6">
-                Suntem mândri de încrederea pe care ne-o acordă proprietarii animalelor de companie 
-                din Timișoara și împrejurimi.
+                Avem un rating excelent online, cu majoritatea recenziilor de 5 stele, 
+                pentru modul în care gestionăm urgențele și cazurile complexe.
               </p>
               
               {/* Rating summary */}
-              <div className="flex items-center justify-center gap-6 mt-8">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center gap-6 mt-10 p-6 bg-white rounded-2xl shadow-card inline-flex mx-auto">
+                <div className="flex items-center gap-3">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="w-6 h-6 text-amber-500 fill-amber-500" />
+                      <Star key={star} className="w-7 h-7 text-amber-500 fill-amber-500" />
                     ))}
                   </div>
-                  <span className="font-heading font-bold text-2xl text-foreground">4.9</span>
+                  <span className="font-heading font-bold text-3xl text-foreground">4.9</span>
                 </div>
-                <div className="h-8 w-px bg-border" />
-                <p className="text-muted-foreground">100+ recenzii</p>
+                <div className="h-10 w-px bg-border" />
+                <div className="text-left">
+                  <p className="font-semibold text-foreground">100+ recenzii</p>
+                  <p className="text-sm text-muted-foreground">de 5 stele</p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Reviews grid */}
-        <section className="section-padding bg-white" ref={ref}>
+        <section className="section-padding bg-gray-50/50" ref={ref}>
           <div className="container-custom">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {reviews.map((review, index) => (
                 <div
                   key={index}
@@ -123,11 +126,11 @@ export default function Recenzii() {
                   }`}
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
-                  <Quote className="w-10 h-10 text-primary/20 mb-4" />
-                  <p className="text-foreground mb-6 leading-relaxed">
-                    {review.text}
+                  <Quote className="w-10 h-10 text-primary/15 mb-5" />
+                  <p className="text-foreground mb-6 leading-relaxed text-[15px]">
+                    „{review.text}"
                   </p>
-                  <div className="flex items-center justify-between pt-4 border-t border-border">
+                  <div className="flex items-center justify-between pt-5 border-t border-border/50">
                     <div>
                       <p className="font-heading font-semibold text-foreground">{review.name}</p>
                       <p className="text-sm text-muted-foreground">{review.pet}</p>
@@ -148,16 +151,16 @@ export default function Recenzii() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-primary text-primary-foreground">
+        <section className="py-20 bg-primary text-primary-foreground">
           <div className="container-custom text-center">
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
-              Vrei să vezi de ce ne aleg proprietarii?
+              Vrei și tu să ai o experiență bună cu noi?
             </h2>
-            <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Programează o vizită și descoperă singur diferența Vet Option.
+            <p className="text-white/80 mb-8 max-w-xl mx-auto text-lg">
+              Programează o vizită și descoperă singur de ce ne aleg proprietarii din Timișoara.
             </p>
-            <Link to="/contact" className="btn-accent">
-              Programează o vizită
+            <Link to="/contact" className="btn-accent px-8 py-4 text-base">
+              Programează o consultație
             </Link>
           </div>
         </section>

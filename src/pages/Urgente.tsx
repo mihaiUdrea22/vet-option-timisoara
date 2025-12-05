@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Phone, AlertTriangle, Dog, Cat, ChevronDown, ChevronUp } from 'lucide-react';
+import { Phone, AlertTriangle, Dog, Cat, ChevronDown, ChevronUp, MessageCircle, Car } from 'lucide-react';
 import { useState } from 'react';
 
 const dogSigns = [
@@ -30,6 +30,27 @@ const catSigns = [
   'Ochii în afara orbitei sau vizibil afectați',
 ];
 
+const steps = [
+  {
+    number: '01',
+    icon: Phone,
+    title: 'Păstrează-ți calmul și sună imediat',
+    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili NON STOP.',
+  },
+  {
+    number: '02',
+    icon: MessageCircle,
+    title: 'Descrie pe scurt simptomele',
+    description: 'Spune-ne ce se întâmplă și urmează indicațiile medicului de gardă.',
+  },
+  {
+    number: '03',
+    icon: Car,
+    title: 'Pornește către clinică',
+    description: 'Echipa noastră te așteaptă pregătită să intervină rapid.',
+  },
+];
+
 const faqs = [
   {
     question: 'Ce trebuie să fac înainte de a veni la clinică?',
@@ -46,10 +67,6 @@ const faqs = [
   {
     question: 'Pot plăti cu cardul?',
     answer: 'Da, acceptăm plata cu cardul, numerar și transfer bancar. În situații de urgență, nu amâna vizita din cauza costurilor – putem discuta opțiuni de plată.',
-  },
-  {
-    question: 'Ce se întâmplă dacă nu pot transporta animalul?',
-    answer: 'Sună-ne și vom găsi o soluție. Dacă animalul este în pericol grav și nu poate fi mutat, vă putem oferi sfaturi telefonice până ajunge ajutorul.',
   },
 ];
 
@@ -68,21 +85,21 @@ export default function Urgente() {
       </Helmet>
       <Layout>
         {/* Hero */}
-        <section className="pt-32 pb-12 bg-gradient-to-b from-red-50 to-white">
+        <section className="pt-36 pb-16 bg-gradient-to-b from-red-50/70 to-white">
           <div className="container-custom">
             <div className="max-w-3xl mx-auto text-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-red-100 text-red-700 rounded-full text-sm font-medium mb-6">
-                <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+              <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-red-100 text-red-700 rounded-full text-sm font-semibold mb-6">
+                <span className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse" />
                 Disponibili NON STOP – 24/7
               </div>
-              <h1 className="section-title">Urgențe veterinare NON STOP</h1>
+              <h1 className="section-title">Urgențe veterinare NON STOP, 24/7</h1>
               <p className="section-subtitle mx-auto mt-6">
                 În caz de urgență, fiecare minut contează. Suntem aici pentru tine și pentru companionul tău, 
-                oricând ai nevoie, zi sau noapte.
+                oricând ai nevoie, zi sau noapte. Nu ezita să suni!
               </p>
               <a 
                 href="tel:+40723143405" 
-                className="btn-accent px-10 py-5 text-lg mt-8 inline-flex"
+                className="btn-accent px-10 py-5 text-lg mt-10 inline-flex shadow-accent"
               >
                 <Phone className="w-6 h-6" />
                 Sună acum: +40 723 143 405
@@ -92,15 +109,15 @@ export default function Urgente() {
         </section>
 
         {/* What is emergency */}
-        <section className="py-12 bg-white">
+        <section className="py-10 bg-white">
           <div className="container-custom">
-            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 md:p-8 flex gap-4">
-              <AlertTriangle className="w-8 h-8 text-amber-600 flex-shrink-0 mt-1" />
+            <div className="bg-amber-50 border border-amber-200 rounded-2xl p-7 md:p-8 flex gap-5">
+              <AlertTriangle className="w-8 h-8 text-amber-600 flex-shrink-0 mt-0.5" />
               <div>
                 <h2 className="font-heading font-semibold text-xl text-foreground mb-2">
                   Ce înseamnă o urgență veterinară?
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground leading-relaxed">
                   O urgență veterinară este orice situație în care animalul tău prezintă simptome severe, 
                   durere intensă sau schimbări bruște de stare care necesită intervenție medicală imediată. 
                   Dacă nu ești sigur dacă e urgență, mai bine sună-ne – te ajutăm să decizi.
@@ -110,10 +127,31 @@ export default function Urgente() {
           </div>
         </section>
 
-        {/* Signs */}
-        <section className="section-padding bg-gray-50" ref={ref}>
+        {/* Emergency Steps */}
+        <section className="py-16 bg-primary text-white">
           <div className="container-custom">
-            <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-center mb-12">
+              Ce faci în caz de urgență?
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              {steps.map((step, index) => (
+                <div key={step.number} className="text-center">
+                  <div className="w-16 h-16 bg-white/15 rounded-2xl flex items-center justify-center mx-auto mb-5">
+                    <step.icon className="w-8 h-8" />
+                  </div>
+                  <span className="text-white/30 font-heading font-bold text-5xl block mb-2">{step.number}</span>
+                  <h3 className="font-heading font-semibold text-lg mb-2">{step.title}</h3>
+                  <p className="text-white/80 text-[15px]">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Signs */}
+        <section className="section-padding bg-gray-50/70" ref={ref}>
+          <div className="container-custom">
+            <div className="text-center mb-14">
               <h2 className="section-title">Semne de urgență</h2>
               <p className="section-subtitle mx-auto mt-4">
                 Dacă observi oricare dintre aceste simptome, contactează-ne imediat.
@@ -123,13 +161,13 @@ export default function Urgente() {
             <div className="grid md:grid-cols-2 gap-8">
               {/* Dogs */}
               <div 
-                className={`bg-card rounded-2xl p-6 md:p-8 shadow-soft transition-all duration-500 ${
+                className={`card-feature transition-all duration-500 ${
                   isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
                 }`}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center">
-                    <Dog className="w-6 h-6 text-amber-600" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center">
+                    <Dog className="w-7 h-7 text-amber-600" />
                   </div>
                   <h3 className="font-heading font-semibold text-xl text-foreground">Semne la câini</h3>
                 </div>
@@ -137,7 +175,7 @@ export default function Urgente() {
                   {dogSigns.map((sign) => (
                     <li key={sign} className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{sign}</span>
+                      <span className="text-muted-foreground text-[15px]">{sign}</span>
                     </li>
                   ))}
                 </ul>
@@ -145,14 +183,14 @@ export default function Urgente() {
 
               {/* Cats */}
               <div 
-                className={`bg-card rounded-2xl p-6 md:p-8 shadow-soft transition-all duration-500 ${
+                className={`card-feature transition-all duration-500 ${
                   isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
                 }`}
                 style={{ transitionDelay: '100ms' }}
               >
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
-                    <Cat className="w-6 h-6 text-purple-600" />
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 bg-purple-100 rounded-2xl flex items-center justify-center">
+                    <Cat className="w-7 h-7 text-purple-600" />
                   </div>
                   <h3 className="font-heading font-semibold text-xl text-foreground">Semne la pisici</h3>
                 </div>
@@ -160,7 +198,7 @@ export default function Urgente() {
                   {catSigns.map((sign) => (
                     <li key={sign} className="flex items-start gap-3">
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-muted-foreground">{sign}</span>
+                      <span className="text-muted-foreground text-[15px]">{sign}</span>
                     </li>
                   ))}
                 </ul>
@@ -172,7 +210,7 @@ export default function Urgente() {
         {/* FAQ */}
         <section className="section-padding bg-white">
           <div className="container-custom max-w-3xl">
-            <div className="text-center mb-12">
+            <div className="text-center mb-14">
               <h2 className="section-title">Întrebări frecvente despre urgențe</h2>
             </div>
 
@@ -180,11 +218,11 @@ export default function Urgente() {
               {faqs.map((faq, index) => (
                 <div
                   key={index}
-                  className="bg-card rounded-2xl border border-border overflow-hidden"
+                  className="bg-gray-50 rounded-2xl border border-border/50 overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left"
+                    className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-100 transition-colors"
                   >
                     <span className="font-heading font-semibold text-foreground pr-4">
                       {faq.question}
@@ -197,7 +235,7 @@ export default function Urgente() {
                   </button>
                   {openFaq === index && (
                     <div className="px-6 pb-5">
-                      <p className="text-muted-foreground">{faq.answer}</p>
+                      <p className="text-muted-foreground leading-relaxed">{faq.answer}</p>
                     </div>
                   )}
                 </div>
@@ -207,12 +245,12 @@ export default function Urgente() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="py-16 bg-red-600 text-white">
+        <section className="py-20 bg-red-600 text-white">
           <div className="container-custom text-center">
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
               Nu aștepta – în caz de urgență, sună imediat!
             </h2>
-            <p className="text-white/90 mb-8 max-w-xl mx-auto">
+            <p className="text-white/90 mb-8 max-w-xl mx-auto text-lg">
               Echipa noastră este pregătită NON STOP să intervină rapid și profesionist.
             </p>
             <a href="tel:+40723143405" className="btn-white px-10 py-5 text-lg">

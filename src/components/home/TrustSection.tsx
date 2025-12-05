@@ -19,7 +19,7 @@ const trustItems = [
   {
     icon: Clock,
     title: 'Urgențe NON STOP',
-    subtitle: '24/7',
+    subtitle: '24/7 în Timișoara',
     color: 'text-teal-600',
     bgColor: 'bg-teal-50',
   },
@@ -29,19 +29,19 @@ export default function TrustSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   return (
-    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
+    <section className="py-8 md:py-12 -mt-20 relative z-20">
       <div
         ref={ref}
         className={`container-custom transition-all duration-700 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}
       >
-        <div className="bg-card rounded-3xl shadow-medium p-8 md:p-12">
-          <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="bg-white rounded-3xl shadow-xl p-6 md:p-10 border border-border/30">
+          <div className="grid md:grid-cols-3 gap-8 md:gap-10">
             {trustItems.map((item, index) => (
               <div
                 key={item.title}
-                className={`flex items-center gap-4 transition-all duration-500 ${
+                className={`flex items-center gap-5 transition-all duration-500 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -57,8 +57,8 @@ export default function TrustSection() {
             ))}
           </div>
           
-          <p className="text-center text-muted-foreground mt-8 max-w-2xl mx-auto">
-            Proprietarii ne aleg pentru profesionalism, empatie și rezultate în cazuri critice.
+          <p className="text-center text-muted-foreground mt-8 pt-8 border-t border-border/50 max-w-2xl mx-auto">
+            Proprietarii ne aleg pentru profesionalism, empatie și rezultate excelente în cazuri critice.
           </p>
         </div>
       </div>
