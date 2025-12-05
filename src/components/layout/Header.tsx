@@ -62,7 +62,7 @@ export default function Header() {
         }`}
       >
         <nav className="container-custom">
-          <div className="flex items-center justify-between py-3 md:py-0 md:h-[72px]">
+          <div className="flex items-center justify-between py-4 md:py-0 md:h-[72px]">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-primary flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
