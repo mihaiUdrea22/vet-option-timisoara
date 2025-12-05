@@ -1,37 +1,42 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Maria & Max',
-    pet: 'Câine Golden Retriever',
-    text: 'Max a avut o dilatație gastrică și a fost operat de urgență în toiul nopții. Echipa Vet Option a fost incredibilă – calm, profesionalism și empatie. Acum Max este sănătos și plin de viață!',
+    name: 'Ioana & Max',
+    pet: 'Labrador',
+    text: 'Max a ajuns la ei în urgență, cu probleme grave de respirație. Echipa a reacționat imediat, l-au stabilizat și acum este perfect sănătos. Le sunt recunoscătoare pentru calmul și profesionalismul lor.',
     rating: 5,
   },
   {
-    name: 'Andrei & Luna',
-    pet: 'Pisică Persană',
-    text: 'Luna a fost salvată după o intervenție chirurgicală complexă. Am simțit că medicii chiar îi pasă de ea. Comunicarea a fost excelentă pe tot parcursul tratamentului.',
+    name: 'Andrei & Luli',
+    pet: 'Pisică europeană',
+    text: 'Am ajuns pentru o intervenție chirurgicală dificilă. Mi-au explicat clar fiecare pas, m-au ținut la curent și au avut grijă de Luli ca de propriul lor animal. Rezultatul a fost peste așteptări.',
     rating: 5,
   },
   {
-    name: 'Elena & Rocky',
-    pet: 'Câine Labrador',
-    text: 'Urgență în weekend, fractura la picior. Am ajuns la Vet Option și în câteva ore Rocky era deja operat. Profesioniști adevărați, vă recomand cu încredere!',
+    name: 'Marius & Dexter',
+    pet: 'Border Collie',
+    text: 'Dexter a avut nevoie de investigații amănunțite și terapie intensivă. Am simțit mereu că este pe mâini bune, iar comunicarea cu medicii a fost exemplară.',
     rating: 5,
   },
   {
-    name: 'Cosmin & Bella',
-    pet: 'Pisică Britanică',
-    text: 'Bella a avut probleme cardiace și echipa de ATI a fost alături de ea zi și noapte. Vă mulțumim pentru tot ce ați făcut!',
+    name: 'Ana & Bruno',
+    pet: 'Metis',
+    text: 'Ne-am mutat recent în Timișoara și ne-am dorit un cabinet de încredere. Aici am găsit atât empatie, cât și aparatură modernă. Vin cu drag la controalele periodice.',
     rating: 5,
   },
   {
-    name: 'Diana & Thor',
-    pet: 'Câine Husky',
-    text: 'Am venit pentru un control de rutină și am descoperit o problemă pe care o puteam trata la timp. Mulțumesc pentru profesionalismul și grija arătată!',
+    name: 'Raluca & Mimi',
+    pet: 'Bichon',
+    text: 'Au reușit să o stabilizeze pe Mimi într-o situație critică. Mi-au explicat totul pe înțelesul meu și m-au susținut emoțional în momentele grele. Îi recomand din suflet.',
+    rating: 5,
+  },
+  {
+    name: 'Vlad & Nero',
+    pet: 'Rottweiler',
+    text: 'Au gestionat impecabil o problemă ortopedică serioasă. De la diagnostic, la operație și recuperare, totul a fost foarte bine organizat și transparent.',
     rating: 5,
   },
 ];
@@ -40,19 +45,27 @@ export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
-  const visibleTestimonials = 3;
-  const maxIndex = Math.max(0, testimonials.length - visibleTestimonials);
+  // Desktop: show 3 cards, Mobile: show 1 card
+  const getVisibleCount = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return 3;
+      if (window.innerWidth >= 768) return 2;
+    }
+    return 1;
+  };
+
+  const totalSlides = testimonials.length;
 
   const next = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
   };
 
   const prev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-50/50 to-white">
+    <section className="section-padding bg-gradient-to-b from-muted/30 to-background">
       <div className="container-custom" ref={ref}>
         {/* Header */}
         <div 
@@ -61,9 +74,9 @@ export default function TestimonialsSection() {
           }`}
         >
           <span className="section-label">Testimoniale</span>
-          <h2 className="section-title">Povești reale ale pacienților</h2>
+          <h2 className="section-title">Ce spun proprietarii despre noi</h2>
           <p className="section-subtitle mx-auto mt-5">
-            Descoperă experiențele proprietarilor care ne-au încredințat animalele de companie.
+            Recenzii reale de la proprietari care au ajuns la noi pentru urgențe, intervenții chirurgicale sau îngrijire de rutină.
           </p>
         </div>
 
@@ -73,19 +86,13 @@ export default function TestimonialsSection() {
           <div className="hidden md:flex justify-between absolute -left-5 -right-5 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
             <button
               onClick={prev}
-              disabled={currentIndex === 0}
-              className={`w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 ${
-                currentIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-primary hover:text-primary-foreground hover:border-primary'
-              }`}
+              className="w-12 h-12 rounded-full bg-background shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 hover:bg-primary hover:text-primary-foreground hover:border-primary"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={next}
-              disabled={currentIndex >= maxIndex}
-              className={`w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 ${
-                currentIndex >= maxIndex ? 'opacity-40 cursor-not-allowed' : 'hover:bg-primary hover:text-primary-foreground hover:border-primary'
-              }`}
+              className="w-12 h-12 rounded-full bg-background shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 hover:bg-primary hover:text-primary-foreground hover:border-primary"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -95,12 +102,12 @@ export default function TestimonialsSection() {
           <div className="overflow-hidden">
             <div 
               className="flex gap-6 lg:gap-8 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * (100 / visibleTestimonials + 2)}%)` }}
+              style={{ transform: `translateX(-${currentIndex * (100 / 3 + 2)}%)` }}
             >
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className={`flex-shrink-0 w-full md:w-[calc(33.333%-1.33rem)] transition-all duration-500 ${
+                  className={`flex-shrink-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.33rem)] transition-all duration-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
@@ -127,26 +134,19 @@ export default function TestimonialsSection() {
             </div>
           </div>
 
-          {/* Mobile navigation dots */}
-          <div className="flex justify-center gap-2 mt-8 md:hidden">
+          {/* Pagination dots */}
+          <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2.5 h-2.5 rounded-full transition-all ${
-                  currentIndex === index ? 'w-8 bg-primary' : 'bg-gray-300'
+                className={`h-2.5 rounded-full transition-all ${
+                  currentIndex === index ? 'w-8 bg-primary' : 'w-2.5 bg-muted-foreground/30'
                 }`}
+                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
-        </div>
-
-        {/* CTA */}
-        <div className="text-center mt-14">
-          <Link to="/recenzii" className="btn-outline">
-            Vezi mai multe recenzii
-            <ChevronRight className="w-5 h-5" />
-          </Link>
         </div>
       </div>
     </section>
