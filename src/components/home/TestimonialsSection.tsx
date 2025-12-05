@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 
 const testimonials = [
   {
@@ -34,12 +34,6 @@ const testimonials = [
     text: 'Am venit pentru un control de rutină și am descoperit o problemă pe care o puteam trata la timp. Mulțumesc pentru profesionalismul și grija arătată!',
     rating: 5,
   },
-  {
-    name: 'Mihai & Cleo',
-    pet: 'Pisică Maine Coon',
-    text: 'Cleo a fost internată 3 zile și am primit update-uri zilnice cu poze și informații. Am simțit că e pe mâini bune în fiecare moment.',
-    rating: 5,
-  },
 ];
 
 export default function TestimonialsSection() {
@@ -47,7 +41,7 @@ export default function TestimonialsSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const visibleTestimonials = 3;
-  const maxIndex = testimonials.length - visibleTestimonials;
+  const maxIndex = Math.max(0, testimonials.length - visibleTestimonials);
 
   const next = () => {
     setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
@@ -58,17 +52,17 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+    <section className="section-padding bg-gradient-to-b from-gray-50/50 to-white">
       <div className="container-custom" ref={ref}>
         {/* Header */}
         <div 
-          className={`text-center mb-12 transition-all duration-700 ${
+          className={`section-header transition-all duration-700 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <span className="text-primary font-medium text-sm uppercase tracking-wider">Testimoniale</span>
-          <h2 className="section-title mt-4">Povești reale ale pacienților</h2>
-          <p className="section-subtitle mx-auto mt-4">
+          <span className="section-label">Testimoniale</span>
+          <h2 className="section-title">Povești reale ale pacienților</h2>
+          <p className="section-subtitle mx-auto mt-5">
             Descoperă experiențele proprietarilor care ne-au încredințat animalele de companie.
           </p>
         </div>
@@ -76,54 +70,54 @@ export default function TestimonialsSection() {
         {/* Testimonials slider */}
         <div className="relative">
           {/* Navigation buttons */}
-          <div className="hidden md:flex justify-between absolute -left-4 -right-4 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
+          <div className="hidden md:flex justify-between absolute -left-5 -right-5 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
             <button
               onClick={prev}
               disabled={currentIndex === 0}
-              className={`w-12 h-12 rounded-full bg-card shadow-medium flex items-center justify-center pointer-events-auto transition-all ${
-                currentIndex === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary hover:text-primary-foreground'
+              className={`w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 ${
+                currentIndex === 0 ? 'opacity-40 cursor-not-allowed' : 'hover:bg-primary hover:text-primary-foreground hover:border-primary'
               }`}
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={next}
               disabled={currentIndex >= maxIndex}
-              className={`w-12 h-12 rounded-full bg-card shadow-medium flex items-center justify-center pointer-events-auto transition-all ${
-                currentIndex >= maxIndex ? 'opacity-50 cursor-not-allowed' : 'hover:bg-primary hover:text-primary-foreground'
+              className={`w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 ${
+                currentIndex >= maxIndex ? 'opacity-40 cursor-not-allowed' : 'hover:bg-primary hover:text-primary-foreground hover:border-primary'
               }`}
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
 
           {/* Testimonials */}
           <div className="overflow-hidden">
             <div 
-              className="flex gap-6 transition-transform duration-500 ease-out"
+              className="flex gap-6 lg:gap-8 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(-${currentIndex * (100 / visibleTestimonials + 2)}%)` }}
             >
               {testimonials.map((testimonial, index) => (
                 <div
                   key={index}
-                  className={`flex-shrink-0 w-full md:w-[calc(33.333%-1rem)] transition-all duration-500 ${
+                  className={`flex-shrink-0 w-full md:w-[calc(33.333%-1.33rem)] transition-all duration-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ transitionDelay: `${index * 100}ms` }}
                 >
                   <div className="card-testimonial h-full flex flex-col">
-                    <Quote className="w-10 h-10 text-primary/20 mb-4" />
-                    <p className="text-foreground mb-6 flex-grow leading-relaxed">
-                      {testimonial.text}
+                    <Quote className="w-10 h-10 text-primary/15 mb-5" />
+                    <p className="text-foreground mb-6 flex-grow leading-relaxed text-[15px]">
+                      „{testimonial.text}"
                     </p>
-                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                    <div className="flex items-center justify-between pt-5 border-t border-border/50">
                       <div>
                         <p className="font-heading font-semibold text-foreground">{testimonial.name}</p>
                         <p className="text-sm text-muted-foreground">{testimonial.pet}</p>
                       </div>
                       <div className="flex">
                         {[...Array(testimonial.rating)].map((_, i) => (
-                          <span key={i} className="text-amber-500">★</span>
+                          <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
                         ))}
                       </div>
                     </div>
@@ -139,7 +133,7 @@ export default function TestimonialsSection() {
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all ${
+                className={`w-2.5 h-2.5 rounded-full transition-all ${
                   currentIndex === index ? 'w-8 bg-primary' : 'bg-gray-300'
                 }`}
               />
@@ -148,9 +142,10 @@ export default function TestimonialsSection() {
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-14">
           <Link to="/recenzii" className="btn-outline">
             Vezi mai multe recenzii
+            <ChevronRight className="w-5 h-5" />
           </Link>
         </div>
       </div>

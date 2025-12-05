@@ -41,7 +41,7 @@ const teamMembers = [
     image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=500&fit=crop',
   },
   {
-    name: 'Tehnician veterinar Ana Petrescu',
+    name: 'Ana Petrescu',
     role: 'Tehnician veterinar senior',
     specialty: 'Asistență chirurgicală, îngrijire pacienți internați',
     bio: 'Ana este sufletul clinicii – mereu zâmbitoare și grijulie cu pacienții. Cu ani de experiență în asistență chirurgicală și îngrijirea pacienților internați, ea se asigură că fiecare animal se simte în siguranță.',
@@ -63,21 +63,21 @@ export default function Echipa() {
       </Helmet>
       <Layout>
         {/* Hero */}
-        <section className="pt-32 pb-16 bg-gradient-to-b from-teal-50 to-white">
+        <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/50 to-white">
           <div className="container-custom">
             <div className="max-w-3xl mx-auto text-center">
-              <span className="text-primary font-medium text-sm uppercase tracking-wider">Echipa</span>
+              <span className="section-label">Echipa</span>
               <h1 className="section-title mt-4">Oamenii din spatele îngrijirii</h1>
               <p className="section-subtitle mx-auto mt-6">
                 O echipă de profesioniști dedicați, pasionați de medicina veterinară și de bunăstarea 
-                animalelor. Fiecare membru al echipei aduce expertiză și empatie în munca sa.
+                animalelor. Fiecare membru al echipei aduce expertiză, empatie și dedicare în munca sa.
               </p>
             </div>
           </div>
         </section>
 
         {/* Team grid */}
-        <section className="section-padding bg-white" ref={ref}>
+        <section className="section-padding bg-gray-50/50" ref={ref}>
           <div className="container-custom">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {teamMembers.map((member, index) => (
@@ -86,7 +86,7 @@ export default function Echipa() {
                   className={`card-team transition-all duration-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  style={{ transitionDelay: `${index * 80}ms` }}
                 >
                   <div className="relative h-72 overflow-hidden">
                     <img
@@ -94,17 +94,17 @@ export default function Echipa() {
                       alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="font-heading font-semibold text-lg">{member.name}</h3>
+                      <h3 className="font-heading font-bold text-lg">{member.name}</h3>
                       <p className="text-white/90 text-sm">{member.role}</p>
                     </div>
                   </div>
                   <div className="p-6">
-                    <div className="inline-block px-3 py-1 bg-primary-light text-primary text-xs font-medium rounded-full mb-3">
+                    <div className="inline-block px-3 py-1.5 bg-primary-light text-primary text-xs font-semibold rounded-full mb-4">
                       {member.specialty}
                     </div>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-muted-foreground text-[15px] leading-relaxed">
                       {member.bio}
                     </p>
                   </div>
@@ -115,9 +115,9 @@ export default function Echipa() {
         </section>
 
         {/* Join team */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-white">
           <div className="container-custom">
-            <div className="bg-card rounded-3xl p-8 md:p-12 shadow-soft text-center max-w-3xl mx-auto">
+            <div className="bg-gradient-to-br from-primary-light to-teal-50 rounded-3xl p-8 md:p-12 text-center max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">
                 Vrei să faci parte din echipa noastră?
               </h2>
@@ -133,12 +133,12 @@ export default function Echipa() {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-primary text-primary-foreground">
+        <section className="py-20 bg-primary text-primary-foreground">
           <div className="container-custom text-center">
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
               Programează o consultație
             </h2>
-            <p className="text-white/80 mb-8 max-w-xl mx-auto">
+            <p className="text-white/80 mb-8 max-w-xl mx-auto text-lg">
               Echipa noastră este pregătită să aibă grijă de companionul tău.
             </p>
             <a href="tel:+40723143405" className="btn-accent px-8 py-4 text-base">

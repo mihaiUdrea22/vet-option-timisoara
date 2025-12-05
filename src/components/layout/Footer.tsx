@@ -22,8 +22,8 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       {/* Main footer */}
-      <div className="container-custom py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container-custom py-16 lg:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10">
           {/* Brand column */}
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
@@ -37,16 +37,17 @@ export default function Footer() {
                 <span className="text-xs text-gray-400">Timișoara</span>
               </div>
             </Link>
-            <p className="text-sm leading-relaxed">
+            <p className="text-sm leading-relaxed text-gray-400">
               Cabinet Medical Veterinar cu urgențe NON STOP în Timișoara. Oferim servicii de chirurgie avansată, 
-              ATI și îngrijire completă pentru câini și pisici, cu o echipă dedicată și empatică.
+              ATI și îngrijire completă pentru câini și pisici.
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://www.instagram.com/vetoptionclinic"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-11 h-11 rounded-xl bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -54,7 +55,8 @@ export default function Footer() {
                 href="https://www.facebook.com/share/19ghUWcqjr/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                className="w-11 h-11 rounded-xl bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Facebook"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -63,13 +65,13 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h4 className="font-heading font-semibold text-white mb-6">Navigare</h4>
-            <ul className="space-y-3">
+            <h4 className="font-heading font-semibold text-white mb-6 text-lg">Navigare</h4>
+            <ul className="space-y-3.5">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-sm hover:text-primary transition-colors"
+                    className="text-sm text-gray-400 hover:text-primary transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -80,13 +82,13 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h4 className="font-heading font-semibold text-white mb-6">Servicii</h4>
-            <ul className="space-y-3">
+            <h4 className="font-heading font-semibold text-white mb-6 text-lg">Servicii</h4>
+            <ul className="space-y-3.5">
               {services.map((service) => (
                 <li key={service.name}>
                   <Link
                     to={service.href}
-                    className="text-sm hover:text-primary transition-colors"
+                    className="text-sm text-gray-400 hover:text-primary transition-colors"
                   >
                     {service.name}
                   </Link>
@@ -97,17 +99,17 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading font-semibold text-white mb-6">Contact</h4>
-            <ul className="space-y-4">
+            <h4 className="font-heading font-semibold text-white mb-6 text-lg">Contact</h4>
+            <ul className="space-y-5">
               <li>
                 <a
                   href="tel:+40723143405"
-                  className="flex items-start gap-3 text-sm hover:text-primary transition-colors"
+                  className="flex items-start gap-3 text-sm hover:text-primary transition-colors group"
                 >
                   <Phone className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
                   <div>
-                    <span className="block font-medium text-white">Urgențe NON STOP</span>
-                    +40 723 143 405
+                    <span className="block font-medium text-white group-hover:text-primary">Urgențe NON STOP</span>
+                    <span className="text-gray-400">+40 723 143 405</span>
                   </div>
                 </a>
               </li>
@@ -115,15 +117,15 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <span className="block font-medium text-white">Adresă</span>
-                  Str. Ion Roată 48, Timișoara
+                  <span className="text-gray-400">Str. Ion Roată 48, Timișoara</span>
                 </div>
               </li>
               <li className="flex items-start gap-3 text-sm">
                 <Clock className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <span className="block font-medium text-white">Program</span>
-                  Luni–Vineri: 10:00 – 20:00<br />
-                  Urgențe: NON STOP
+                  <span className="text-gray-400">Luni–Vineri: 10:00 – 20:00</span><br />
+                  <span className="text-gray-400">Urgențe: NON STOP</span>
                 </div>
               </li>
             </ul>
@@ -134,9 +136,9 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-gray-800">
         <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>© {new Date().getFullYear()} Vet Option Timișoara. Toate drepturile rezervate.</p>
-          <p className="text-gray-500">
-            Cabinet Medical Veterinar
+          <p className="text-gray-500">© {new Date().getFullYear()} Vet Option Timișoara. Toate drepturile rezervate.</p>
+          <p className="text-gray-600">
+            Cabinet Medical Veterinar – Urgențe NON STOP
           </p>
         </div>
       </div>
