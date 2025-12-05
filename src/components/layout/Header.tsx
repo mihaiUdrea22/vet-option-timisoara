@@ -62,11 +62,11 @@ export default function Header() {
         }`}
       >
         <nav className="container-custom">
-          <div className="flex items-center justify-between h-16 md:h-[72px]">
+          <div className="flex items-center justify-between py-3 md:py-0 md:h-[72px]">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="w-11 h-11 rounded-xl bg-primary flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
-                <span className="text-primary-foreground font-heading font-bold text-lg">VO</span>
+              <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-primary flex items-center justify-center group-hover:scale-105 transition-transform shadow-sm">
+                <span className="text-primary-foreground font-heading font-bold text-base md:text-lg">VO</span>
               </div>
               <div className="hidden sm:block">
                 <span className="font-heading font-bold text-[17px] text-foreground block leading-tight">
@@ -104,7 +104,7 @@ export default function Header() {
 
             {/* Mobile menu button */}
             <button
-              className="lg:hidden p-2.5 rounded-xl hover:bg-muted transition-colors"
+              className="lg:hidden p-2 rounded-xl hover:bg-muted transition-colors flex items-center justify-center"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Meniu"
             >
