@@ -1,0 +1,145 @@
+import { Link } from 'react-router-dom';
+import { Phone, MapPin, Mail, Clock, Instagram, Facebook } from 'lucide-react';
+
+const quickLinks = [
+  { name: 'Acasă', href: '/' },
+  { name: 'Despre noi', href: '/despre' },
+  { name: 'Servicii', href: '/servicii' },
+  { name: 'Urgențe 24/7', href: '/urgente' },
+  { name: 'Echipa', href: '/echipa' },
+  { name: 'Contact', href: '/contact' },
+];
+
+const services = [
+  { name: 'Urgențe NON STOP', href: '/urgente' },
+  { name: 'Chirurgie', href: '/servicii' },
+  { name: 'ATI Veterinar', href: '/servicii' },
+  { name: 'Consultații', href: '/servicii' },
+  { name: 'Imagistică', href: '/servicii' },
+];
+
+export default function Footer() {
+  return (
+    <footer className="bg-gray-900 text-gray-300">
+      {/* Main footer */}
+      <div className="container-custom py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Brand column */}
+          <div className="space-y-6">
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center">
+                <span className="text-primary-foreground font-heading font-bold text-xl">VO</span>
+              </div>
+              <div>
+                <span className="font-heading font-bold text-lg text-white block leading-tight">
+                  Vet Option
+                </span>
+                <span className="text-xs text-gray-400">Timișoara</span>
+              </div>
+            </Link>
+            <p className="text-sm leading-relaxed">
+              Cabinet Medical Veterinar cu urgențe NON STOP în Timișoara. Oferim servicii de chirurgie avansată, 
+              ATI și îngrijire completă pentru câini și pisici, cu o echipă dedicată și empatică.
+            </p>
+            <div className="flex gap-4">
+              <a
+                href="https://www.instagram.com/vetoptionclinic"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/share/19ghUWcqjr/?mibextid=wwXIfr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <Facebook className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h4 className="font-heading font-semibold text-white mb-6">Navigare</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    to={link.href}
+                    className="text-sm hover:text-primary transition-colors"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-heading font-semibold text-white mb-6">Servicii</h4>
+            <ul className="space-y-3">
+              {services.map((service) => (
+                <li key={service.name}>
+                  <Link
+                    to={service.href}
+                    className="text-sm hover:text-primary transition-colors"
+                  >
+                    {service.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="font-heading font-semibold text-white mb-6">Contact</h4>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  href="tel:+40723143405"
+                  className="flex items-start gap-3 text-sm hover:text-primary transition-colors"
+                >
+                  <Phone className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
+                  <div>
+                    <span className="block font-medium text-white">Urgențe NON STOP</span>
+                    +40 723 143 405
+                  </div>
+                </a>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <MapPin className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
+                <div>
+                  <span className="block font-medium text-white">Adresă</span>
+                  Str. Ion Roată 48, Timișoara
+                </div>
+              </li>
+              <li className="flex items-start gap-3 text-sm">
+                <Clock className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
+                <div>
+                  <span className="block font-medium text-white">Program</span>
+                  Luni–Vineri: 10:00 – 20:00<br />
+                  Urgențe: NON STOP
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom bar */}
+      <div className="border-t border-gray-800">
+        <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+          <p>© {new Date().getFullYear()} Vet Option Timișoara. Toate drepturile rezervate.</p>
+          <p className="text-gray-500">
+            Cabinet Medical Veterinar
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
