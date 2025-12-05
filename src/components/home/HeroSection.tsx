@@ -72,34 +72,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Floating Stats Cards */}
-      <div className="absolute bottom-8 right-8 hidden xl:flex flex-col gap-4 animate-fade-in delay-500">
-        {/* Rating card */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 shadow-lg animate-float">
-          <div className="flex items-center gap-3">
-            <div className="flex">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span key={star} className="text-amber-500 text-xl">★</span>
-              ))}
-            </div>
-            <span className="font-heading font-bold text-xl text-foreground">4.9</span>
-          </div>
-          <p className="text-sm text-muted-foreground mt-1">100+ recenzii de 5 stele</p>
-        </div>
-
-        {/* Award card */}
-        <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-5 shadow-lg animate-float delay-200">
-          <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-amber-100 flex items-center justify-center">
-              <span className="text-2xl">🏆</span>
-            </div>
-            <div>
-              <p className="font-heading font-semibold text-foreground">Laureat</p>
-              <p className="text-sm text-muted-foreground">Firma de Aur</p>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 }
