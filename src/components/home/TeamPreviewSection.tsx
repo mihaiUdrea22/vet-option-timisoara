@@ -1,36 +1,55 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ChevronRight } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const teamMembers = [
   {
-    name: 'Dr. Alexandru Popescu',
+    name: 'Andreea',
+    role: 'Medic veterinar',
+    specialty: 'Medicină internă • Ecografie abdominală',
+    image: '/team/andreea.jpeg',
+  },
+  {
+    name: 'Antonia',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Interes: chirurgie',
+    image: '/team/antonia.jpeg',
+  },
+  {
+    name: 'Carla',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Prim ajutor • Suport comportamental',
+    image: '/team/carla.jpeg',
+  },
+  {
+    name: 'Alexandra',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Interes: chirurgie, perfecționare',
+    image: '/team/alexandra.jpeg',
+  },
+  {
+    name: 'Răzvan',
     role: 'Medic veterinar chirurg',
-    specialty: 'Chirurgie generală, ortopedie',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=500&fit=crop',
-  },
-  {
-    name: 'Dr. Maria Ionescu',
-    role: 'Medic veterinar ATI',
-    specialty: 'Terapie intensivă, urgențe',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=500&fit=crop',
-  },
-  {
-    name: 'Dr. Andrei Munteanu',
-    role: 'Medic veterinar',
-    specialty: 'Neurochirurgie, imagistică',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=500&fit=crop',
-  },
-  {
-    name: 'Dr. Elena Dumitrescu',
-    role: 'Medic veterinar',
-    specialty: 'Medicină internă, cardiologie',
-    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=500&fit=crop',
+    specialty: 'Neurochirurgie • Ortopedie • Oncologică',
+    image: '/team/razvan.jpeg',
   },
 ];
 
 export default function TeamPreviewSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const [api, setApi] = useState<ReturnType<typeof useEmblaCarousel>[1] | null>(null);
+
+  // autoplay carousel
+  useEffect(() => {
+    if (!api) return;
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 3200);
+    return () => clearInterval(interval);
+  }, [api]);
 
   return (
     <section className="section-padding bg-white">
@@ -49,31 +68,44 @@ export default function TeamPreviewSection() {
         </div>
 
         {/* Team grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {teamMembers.map((member, index) => (
-            <div
-              key={member.name}
-              className={`card-team transition-all duration-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={`${member.name} - ${member.role} cabinet veterinar Timișoara`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-              </div>
-              <div className="p-5">
-                <h3 className="font-heading font-semibold text-foreground mb-1">{member.name}</h3>
-                <p className="text-primary text-sm font-medium mb-1">{member.role}</p>
-                <p className="text-muted-foreground text-sm">{member.specialty}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        <Carousel
+          setApi={setApi}
+          opts={{
+            loop: true,
+            align: 'start',
+          }}
+          className="relative"
+        >
+          <CarouselContent className="-ml-3">
+            {teamMembers.map((member, index) => (
+              <CarouselItem
+                key={member.name}
+                className="pl-3 sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                style={{ transitionDelay: `${index * 80}ms` }}
+              >
+                <div
+                  className={`card-team h-full transition-all duration-500 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                >
+                  <div className="relative h-72 overflow-hidden">
+                    <img
+                      src={member.image}
+                      alt={`${member.name} - ${member.role} cabinet veterinar Timișoara`}
+                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+                  </div>
+                  <div className="p-5 space-y-1">
+                    <h3 className="font-heading font-semibold text-foreground leading-tight">{member.name}</h3>
+                    <p className="text-primary text-sm font-medium leading-tight">{member.role}</p>
+                    <p className="text-muted-foreground text-sm leading-relaxed">{member.specialty}</p>
+                  </div>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
 
         {/* CTA */}
         <div className="text-center mt-12">

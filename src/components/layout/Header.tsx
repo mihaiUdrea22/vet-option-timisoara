@@ -35,7 +35,7 @@ export default function Header() {
   return (
     <>
       {/* Top Bar - Emergency Info */}
-      <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground rounded-t-xl">
+      <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground">
         <div className="container-custom">
           <div className="flex flex-col md:flex-row items-center md:justify-between py-2.5 md:py-2 gap-y-2 md:gap-y-0 text-sm">
             <div className="flex items-center gap-2">
@@ -55,7 +55,7 @@ export default function Header() {
 
       {/* Main Header */}
       <header
-        className={`fixed top-[72px] md:top-[36px] left-0 right-0 z-50 transition-all duration-300 border-t-0 rounded-b-xl md:rounded-b-none ${
+        className={`fixed top-[83px] md:top-[36px] left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
             ? 'bg-background/98 backdrop-blur-lg shadow-md'
             : 'bg-background/80 backdrop-blur-sm'
@@ -64,7 +64,11 @@ export default function Header() {
         <nav className="container-custom">
           <div className="flex items-center justify-between py-4 md:py-0 md:h-[72px]">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link
+              to="/"
+              onClick={() => window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })}
+              className="flex items-center gap-3 group lg:flex-1"
+            >
               <img 
                 src={logoVetOption} 
                 alt="Vet Option Timișoara Logo" 
@@ -77,6 +81,13 @@ export default function Header() {
                 <span className="text-xs text-muted-foreground">Timișoara</span>
               </div>
             </Link>
+
+            {/* Mobile centered text */}
+            <div className="absolute left-1/2 -translate-x-1/2 sm:hidden">
+              <span className="font-heading font-bold text-[17px] text-foreground">
+                Vet Option
+              </span>
+            </div>
 
             {/* Desktop navigation */}
             <div className="hidden lg:flex items-center gap-1">

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -6,51 +7,45 @@ import { Phone } from 'lucide-react';
 
 const teamMembers = [
   {
-    name: 'Dr. Alexandru Popescu',
-    role: 'Medic veterinar chirurg – Director medical',
-    specialty: 'Chirurgie generală, ortopedie, traumatologie',
-    bio: 'Cu peste 10 ani de experiență în chirurgie veterinară, Dr. Alexandru coordonează echipa chirurgicală și se ocupă de cele mai complexe cazuri ortopedice. Pasiunea lui pentru meserie l-a determinat să participe la numeroase congrese internaționale.',
-    image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&h=500&fit=crop',
+    name: 'Răzvan',
+    role: 'Medic veterinar chirurg',
+    specialty: 'Neurochirurgie • Ortopedie • Chirurgie oncologică',
+    bio: 'Absolvent al Facultății de Medicină Veterinară Iași, și-a continuat formarea în neurologie și neurochirurgie la Spitalul Universitar din Napoli, apoi și-a perfecționat abilitățile clinice în Marea Britanie prin multiple specializări în chirurgie generală, neurochirurgie, ortopedie și chirurgie oncologică. Din 2020 urmează doctoratul în chirurgia ortopedică veterinară la Timișoara, introducând în România tehnici minim invazive pentru ruptura ligamentului încrucișat cranial la câini. A lucrat cu chirurgi de elită din Europa și îmbină practica chirurgicală cu activitatea didactică la Facultatea de Medicină Veterinară din Timișoara. Își găsește echilibrul în aventuri pe munte, pe pârtia de schi sau explorând locuri noi alături de prieteni.',
+    image: '/team/razvan.jpeg',
   },
   {
-    name: 'Dr. Maria Ionescu',
-    role: 'Medic veterinar ATI',
-    specialty: 'Anestezie, terapie intensivă, urgențe',
-    bio: 'Specializată în anestezie și terapie intensivă, Dr. Maria este coloana vertebrală a serviciului de urgențe NON STOP. Calmă și eficientă sub presiune, ea se asigură că fiecare pacient critic primește îngrijirea de care are nevoie.',
-    image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&h=500&fit=crop',
-  },
-  {
-    name: 'Dr. Andrei Munteanu',
+    name: 'Andreea',
     role: 'Medic veterinar',
-    specialty: 'Neurochirurgie, imagistică, diagnosticare',
-    bio: 'Cu o pasiune deosebită pentru neurologie, Dr. Andrei se ocupă de cazurile complexe care implică coloana vertebrală și sistemul nervos. Este expertul clinicii în interpretarea imagisticii avansate.',
-    image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=400&h=500&fit=crop',
+    specialty: 'Medicină internă • Ecografie abdominală',
+    bio: 'A absolvit Facultatea de Medicină Veterinară din Timișoara în 2021 și, de atunci, își dedică toată energia îngrijirii și sănătății animalelor. Cu patru ani de experiență, s-a specializat în medicina internă și ecografia abdominală, perfecționându-și constant cunoștințele prin cursuri și formări periodice. Se remarcă prin atenția meticuloasă pentru fiecare pacient, iar profesionalismul, empatia și devotamentul o recomandă drept un medic de care suntem mândri. În afara cabinetului, își găsește inspirația în natură, pe care o surprinde în imagini memorabile, și este o călătoare pasionată, mereu în căutarea unor experiențe noi.',
+    image: '/team/andreea.jpeg',
   },
   {
-    name: 'Dr. Elena Dumitrescu',
-    role: 'Medic veterinar',
-    specialty: 'Medicină internă, cardiologie, oncologie',
-    bio: 'Dr. Elena aduce empatie și profesionalism în fiecare consultație. Specializată în afecțiuni interne și cardiologie, ea se ocupă cu dedicare de pacienții cu boli cronice care necesită monitorizare atentă.',
-    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&h=500&fit=crop',
+    name: 'Antonia',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Interes: chirurgie veterinară',
+    bio: 'Studentă la Facultatea de Medicină Veterinară, definită de dragostea pentru animale și dorința de a le oferi cea mai bună îngrijire. Este atrasă de ramura chirurgicală și este motivată constant să învețe și să se perfecționeze. Ambițioasă, foarte empatică și comunicativă, aduce energie și dedicare în echipă.',
+    image: '/team/antonia.jpeg',
   },
   {
-    name: 'Dr. Mihai Radu',
-    role: 'Medic veterinar',
-    specialty: 'Dermatologie, oftalmologie',
-    bio: 'Cu experiență în dermatologie și oftalmologie veterinară, Dr. Mihai rezolvă cu răbdare cazurile complicate de alergii, infecții cutanate și probleme oculare. Este cunoscut pentru abordarea sa meticuloasă.',
-    image: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=500&fit=crop',
+    name: 'Carla',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Prim ajutor • Suport comportamental • Voluntariat',
+    bio: 'Originară din Strasbourg, studentă la Facultatea de Medicină Veterinară din Timișoara. A demonstrat o conduită excepțională în cabinet, aducând plus valoare în îngrijirea pacienților. A urmat cursuri de prim ajutor canin și suport comportamental pentru câini și pisici, iar în 2021 și-a dedicat mare parte din timpul liber voluntariatului într-un adăpost. În afara medicinei veterinare, este pasionată de drumeții, canicross, schi și călătorii, mereu în căutarea unor experiențe noi în natură.',
+    image: '/team/carla.jpeg',
   },
   {
-    name: 'Ana Petrescu',
-    role: 'Tehnician veterinar senior',
-    specialty: 'Asistență chirurgicală, îngrijire pacienți internați',
-    bio: 'Ana este sufletul clinicii – mereu zâmbitoare și grijulie cu pacienții. Cu ani de experiență în asistență chirurgicală și îngrijirea pacienților internați, ea se asigură că fiecare animal se simte în siguranță.',
-    image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=400&h=500&fit=crop',
+    name: 'Alexandra',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Interes: chirurgie • Dezvoltare clinică',
+    bio: 'Studentă la Facultatea de Medicină Veterinară din Timișoara, remarcată prin munca enormă depusă zilnic și dorința continuă de a evolua. Se dedică dezvoltării abilităților clinice, cu interes deosebit pentru chirurgia veterinară. Modestia și seriozitatea se reflectă în felul în care învață și aplică cunoștințele, fiind mereu dornică să aprofundeze fiecare aspect al profesiei.',
+    image: '/team/alexandra.jpeg',
   },
 ];
 
 export default function Echipa() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   return (
     <>
@@ -78,35 +73,102 @@ export default function Echipa() {
 
         {/* Team grid */}
         <section className="section-padding bg-gray-50/50" ref={ref}>
-          <div className="container-custom">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {teamMembers.map((member, index) => (
+          <div className="container-custom space-y-10">
+            {/* Row 1: Răzvan & Andreea */}
+            <div className="grid md:grid-cols-2 gap-10">
+              {teamMembers.slice(0, 2).map((member, index) => (
                 <div
                   key={member.name}
-                  className={`card-team transition-all duration-500 ${
+                  className={`card-team bg-gradient-to-b from-white to-primary/5 border border-border/50 shadow-xl backdrop-blur transition-all duration-500 ${
                     isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ transitionDelay: `${index * 80}ms` }}
                 >
-                  <div className="relative h-72 overflow-hidden">
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
                     <img
                       src={member.image}
                       alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover object-top"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="font-heading font-bold text-lg">{member.name}</h3>
-                      <p className="text-white/90 text-sm">{member.role}</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-foreground/15 to-transparent rounded-3xl" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
+                      <h3 className="font-heading font-bold text-xl leading-tight drop-shadow-sm">{member.name}</h3>
+                      <p className="text-white/90 text-sm font-medium leading-tight">{member.role}</p>
+                      <p className="text-white/85 text-xs leading-tight">{member.specialty}</p>
                     </div>
                   </div>
-                  <div className="p-6">
-                    <div className="inline-block px-3 py-1.5 bg-primary-light text-primary text-xs font-semibold rounded-full mb-4">
-                      {member.specialty}
+                  <div className="p-6 md:p-7 space-y-4 bg-white rounded-3xl">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                        {member.role}
+                      </span>
+                      <span className="px-3 py-1.5 bg-amber-50 text-amber-600 text-xs font-semibold rounded-full">
+                        {member.specialty}
+                      </span>
                     </div>
-                    <p className="text-muted-foreground text-[15px] leading-relaxed">
+                    <div className="space-y-3 text-foreground/90 text-[15.5px] leading-7 text-balance whitespace-pre-line">
+                      <div
+                        style={
+                          expanded[member.name]
+                            ? undefined
+                            : {
+                                display: '-webkit-box',
+                                WebkitLineClamp: 6,
+                                WebkitBoxOrient: 'vertical' as const,
+                                overflow: 'hidden',
+                              }
+                        }
+                      >
+                        {member.bio.replace(/\. /g, '.\n')}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setExpanded((prev) => ({ ...prev, [member.name]: !prev[member.name] }))}
+                        className="text-primary font-semibold text-sm hover:underline"
+                      >
+                        {expanded[member.name] ? 'Ascunde' : 'Citește mai mult'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Row 2: ceilalți 3 */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+              {teamMembers.slice(2).map((member, index) => (
+                <div
+                  key={member.name}
+                  className={`card-team bg-gradient-to-b from-white to-primary/5 border border-border/50 shadow-xl backdrop-blur transition-all duration-500 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  }`}
+                  style={{ transitionDelay: `${index * 80}ms` }}
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
+                    <img
+                      src={member.image}
+                      alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
+                      className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-foreground/15 to-transparent rounded-3xl" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
+                      <h3 className="font-heading font-bold text-xl leading-tight drop-shadow-sm">{member.name}</h3>
+                      <p className="text-white/90 text-sm font-medium leading-tight">{member.role}</p>
+                      <p className="text-white/85 text-xs leading-tight">{member.specialty}</p>
+                    </div>
+                  </div>
+                  <div className="p-6 md:p-7 space-y-4 bg-white rounded-3xl">
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                        {member.role}
+                      </span>
+                      <span className="px-3 py-1.5 bg-amber-50 text-amber-600 text-xs font-semibold rounded-full">
+                        {member.specialty}
+                      </span>
+                    </div>
+                    <div className="space-y-3 text-foreground/90 text-[15.5px] leading-7 text-balance">
                       {member.bio}
-                    </p>
+                    </div>
                   </div>
                 </div>
               ))}

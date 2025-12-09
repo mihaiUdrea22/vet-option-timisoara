@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+import useEmblaCarousel from 'embla-carousel-react';
 
 const testimonials = [
   {
@@ -43,26 +45,28 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<ReturnType<typeof useEmblaCarousel>[1] | null>(null);
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
-
-  // Desktop: show 3 cards, Mobile: show 1 card
-  const getVisibleCount = () => {
-    if (typeof window !== 'undefined') {
-      if (window.innerWidth >= 1024) return 3;
-      if (window.innerWidth >= 768) return 2;
-    }
-    return 1;
-  };
 
   const totalSlides = testimonials.length;
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
-  };
+  // autoplay
+  useEffect(() => {
+    if (!api) return;
+    const id = setInterval(() => api.scrollNext(), 3200);
+    return () => clearInterval(id);
+  }, [api]);
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
-  };
+  // track selected index for dots
+  useEffect(() => {
+    if (!api) return;
+    const onSelect = () => setCurrentIndex(api.selectedScrollSnap());
+    api.on('select', onSelect);
+    onSelect();
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api]);
 
   return (
     <section className="section-padding bg-gradient-to-b from-muted/30 to-background">
@@ -82,37 +86,25 @@ export default function TestimonialsSection() {
 
         {/* Testimonials slider */}
         <div className="relative">
-          {/* Navigation buttons */}
-          <div className="hidden md:flex justify-between absolute -left-5 -right-5 top-1/2 -translate-y-1/2 z-10 pointer-events-none">
-            <button
-              onClick={prev}
-              className="w-12 h-12 rounded-full bg-background shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 hover:bg-primary hover:text-primary-foreground hover:border-primary"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-            <button
-              onClick={next}
-              className="w-12 h-12 rounded-full bg-background shadow-lg flex items-center justify-center pointer-events-auto transition-all border border-border/50 hover:bg-primary hover:text-primary-foreground hover:border-primary"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Testimonials */}
-          <div className="overflow-hidden">
-            <div 
-              className="flex gap-6 lg:gap-8 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(-${currentIndex * (100 / 3 + 2)}%)` }}
-            >
+          <Carousel
+            setApi={setApi}
+            opts={{
+              loop: true,
+              align: 'start',
+            }}
+          >
+            <CarouselContent className="-ml-4">
               {testimonials.map((testimonial, index) => (
-                <div
+                <CarouselItem
                   key={index}
-                  className={`flex-shrink-0 w-full md:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.33rem)] transition-all duration-500 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  className="pl-4 sm:basis-1/2 lg:basis-1/3"
+                  style={{ transitionDelay: `${index * 80}ms` }}
                 >
-                  <div className="card-testimonial h-full flex flex-col">
+                  <div
+                    className={`card-testimonial h-full flex flex-col transition-all duration-500 ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    }`}
+                  >
                     <Quote className="w-10 h-10 text-primary/15 mb-5" />
                     <p className="text-foreground mb-6 flex-grow leading-relaxed text-[15px]">
                       „{testimonial.text}"
@@ -129,17 +121,17 @@ export default function TestimonialsSection() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </CarouselItem>
               ))}
-            </div>
-          </div>
+            </CarouselContent>
+          </Carousel>
 
           {/* Pagination dots */}
           <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentIndex(index)}
+                onClick={() => api?.scrollTo(index)}
                 className={`h-2.5 rounded-full transition-all ${
                   currentIndex === index ? 'w-8 bg-primary' : 'w-2.5 bg-muted-foreground/30'
                 }`}

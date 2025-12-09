@@ -20,7 +20,7 @@ export default function Index() {
           content="Cabinet medical veterinar în Timișoara cu urgențe NON STOP. Chirurgie avansată, ATI, ortopedie și neurochirurgie pentru câini și pisici. Sună acum: +40 723 143 405" 
         />
         <meta name="keywords" content="cabinet veterinar Timișoara, urgențe veterinare NON STOP, chirurgie veterinară, ATI veterinar, ortopedie câini pisici" />
-        <link rel="canonical" href="https://vetoption.ro" />
+        <link rel="canonical" href="https://clinica-veterinara-timisoara.ro/" />
       </Helmet>
       <Layout>
         <HeroSection />
