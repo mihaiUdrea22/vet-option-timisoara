@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import logoVetOption from '@/assets/logo-vet-option.png';
+import BookingModal from '@/components/BookingModal';
 
 const navigation = [
   { name: 'Acasă', href: '/' },
@@ -18,6 +19,7 @@ const navigation = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -34,6 +36,7 @@ export default function Header() {
 
   return (
     <>
+      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
       {/* Top Bar - Emergency Info */}
       <div className="fixed top-0 left-0 right-0 z-[60] bg-primary text-primary-foreground">
         <div className="container-custom">
@@ -108,11 +111,12 @@ export default function Header() {
 
             {/* CTA button */}
             <div className="hidden md:flex items-center gap-3">
-              <Link to="/contact">
-                <Button className="btn-accent text-sm px-5 py-2.5 h-auto rounded-xl">
-                  Programează consultație
-                </Button>
-              </Link>
+              <Button
+                onClick={() => setBookingOpen(true)}
+                className="btn-accent text-sm px-5 py-2.5 h-auto rounded-xl"
+              >
+                Programează consultație
+              </Button>
             </div>
 
             {/* Mobile menu button */}
@@ -152,9 +156,12 @@ export default function Header() {
                   <Phone className="w-4 h-4" />
                   Urgențe: +40 723 143 405
                 </a>
-                <Link to="/contact" className="btn-accent w-full text-center block">
+                <button
+                  onClick={() => setBookingOpen(true)}
+                  className="btn-accent w-full text-center block"
+                >
                   Programează consultație
-                </Link>
+                </button>
               </div>
             </div>
           </div>

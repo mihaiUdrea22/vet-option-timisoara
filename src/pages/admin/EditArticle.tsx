@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { supabase } from "@/lib/supabaseClient";
 import EditArticleForm from "@/components/EditArticleForm";
+import AdminLayout from "@/components/admin/AdminLayout";
 
 type Article = {
   id: string;
@@ -42,10 +43,10 @@ export default function AdminEditArticle() {
   }, [id]);
 
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
+    <AdminLayout title="Editează articol">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-3xl font-bold">Editează articol</h1>
+          <h1 className="text-2xl font-semibold">Editează articol</h1>
           <p className="text-sm text-gray-500">
             ID: <span className="font-mono">{id}</span>
           </p>
@@ -61,7 +62,7 @@ export default function AdminEditArticle() {
       {loading && <p className="text-gray-600">Se încarcă articolul...</p>}
       {error && <p className="text-red-600 text-sm mb-4">{error}</p>}
       {article && <EditArticleForm article={article} />}
-    </main>
+    </AdminLayout>
   );
 }
 

@@ -16,8 +16,10 @@ import Galerie from "./pages/Galerie";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import AdminLogin from "./pages/admin/Login";
+import AdminDashboard from "./pages/admin/Dashboard";
 import AdminArticles from "./pages/admin/Articles";
 import AdminEditArticle from "./pages/admin/EditArticle";
+import AdminAppointments from "./pages/admin/Appointments";
 import { isAdminAuthenticated } from "./lib/adminAuth";
 
 const RequireAdmin = () => {
@@ -50,8 +52,11 @@ const App = () => (
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin/login" element={<AdminLogin />} />
             <Route element={<RequireAdmin />}>
+              <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/admin/articole" element={<AdminArticles />} />
               <Route path="/admin/articole/:id" element={<AdminEditArticle />} />
+              <Route path="/admin/programari" element={<AdminAppointments />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

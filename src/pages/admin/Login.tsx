@@ -10,7 +10,7 @@ export default function AdminLogin() {
 
   useEffect(() => {
     if (isAdminAuthenticated()) {
-      navigate("/admin/articole", { replace: true });
+      navigate("/admin/dashboard", { replace: true });
     }
   }, [navigate]);
 
@@ -25,7 +25,7 @@ export default function AdminLogin() {
         setErrorMsg("Parolă incorectă");
         return;
       }
-      navigate("/admin/articole", { replace: true });
+      navigate("/admin/dashboard", { replace: true });
     } catch (err: any) {
       setErrorMsg(err?.message || "Eroare la autentificare");
     } finally {

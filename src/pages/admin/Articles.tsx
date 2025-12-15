@@ -5,6 +5,7 @@ import NewArticleForm from "@/components/NewArticleForm";
 import DeleteArticleButton from "@/components/DeleteArticleButton";
 import { logoutAdmin } from "@/lib/adminAuth";
 import { RefreshCw, ExternalLink, Copy } from "lucide-react";
+import AdminLayout from "@/components/admin/AdminLayout";
 
 type Article = {
   id: string;
@@ -60,11 +61,10 @@ export default function AdminArticles() {
   };
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-12">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-3xl font-bold">Admin – Articole</h1>
-        <div className="flex items-center gap-3 text-sm">
-          {copyMsg && <span className="text-green-600">{copyMsg}</span>}
+    <AdminLayout title="Articole">
+      <div className="flex items-center justify-between mb-4 text-sm">
+        {copyMsg && <span className="text-green-600">{copyMsg}</span>}
+        <div className="flex items-center gap-3">
           <button
             onClick={fetchArticles}
             disabled={loading}
@@ -184,7 +184,7 @@ export default function AdminArticles() {
           )}
         </div>
       </div>
-    </main>
+    </AdminLayout>
   );
 }
 
