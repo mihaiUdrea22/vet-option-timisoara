@@ -3,38 +3,14 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Instagram, ChevronRight } from 'lucide-react';
 
 const galleryImages = [
-  {
-    src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=400&h=400&fit=crop',
-    alt: 'Câine fericit la cabinet veterinar Timișoara',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=400&h=400&fit=crop',
-    alt: 'Pisică la consultație veterinară',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=400&h=400&fit=crop',
-    alt: 'Câine la Vet Option Timișoara',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=400&h=400&fit=crop',
-    alt: 'Echipă veterinară cu pacient',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=400&h=400&fit=crop',
-    alt: 'Pisică sănătoasă după tratament',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1587764379873-97837921fd44?w=400&h=400&fit=crop',
-    alt: 'Cabinet modern veterinar',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=400&h=400&fit=crop',
-    alt: 'Câini fericiți la plimbare',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=400&h=400&fit=crop',
-    alt: 'Pisică la control de rutină',
-  },
+  { src: '/gallery/gallery-1.png', alt: 'Ecografie vezică' },
+  { src: '/gallery/gallery-2.png', alt: 'Pisică cu hanorac roșu' },
+  { src: '/gallery/gallery-3.png', alt: 'Radiografie membru anterior' },
+  { src: '/gallery/gallery-4.png', alt: 'Cocker spaniel' },
+  { src: '/gallery/gallery-5.png', alt: 'Cățel cane corso' },
+  { src: '/gallery/gallery-6.png', alt: 'Cățel și lalele' },
+  { src: '/gallery/gallery-7.png', alt: 'Pui de pisică nou-născut' },
+  { src: '/gallery/gallery-8.png', alt: 'Intervenție chirurgicală' },
 ];
 
 export default function GalleryPreviewSection() {

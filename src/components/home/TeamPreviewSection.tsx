@@ -28,7 +28,7 @@ const teamMembers = [
     name: 'Alexandra',
     role: 'Studentă medicină veterinară',
     specialty: 'Interes: chirurgie, perfecționare',
-    image: '/team/alexandra.jpeg',
+    image: '/placeholder.svg',
   },
   {
     name: 'Răzvan',
@@ -93,6 +93,11 @@ export default function TeamPreviewSection() {
                       src={member.image}
                       alt={`${member.name} - ${member.role} cabinet veterinar Timișoara`}
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = "/placeholder.svg";
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
                   </div>

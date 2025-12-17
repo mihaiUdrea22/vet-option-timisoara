@@ -39,7 +39,7 @@ const teamMembers = [
     role: 'Studentă medicină veterinară',
     specialty: 'Interes: chirurgie • Dezvoltare clinică',
     bio: 'Studentă la Facultatea de Medicină Veterinară din Timișoara, remarcată prin munca enormă depusă zilnic și dorința continuă de a evolua. Se dedică dezvoltării abilităților clinice, cu interes deosebit pentru chirurgia veterinară. Modestia și seriozitatea se reflectă în felul în care învață și aplică cunoștințele, fiind mereu dornică să aprofundeze fiecare aspect al profesiei.',
-    image: '/team/alexandra.jpeg',
+    image: '/placeholder.svg',
   },
 ];
 
@@ -89,6 +89,11 @@ export default function Echipa() {
                       src={member.image}
                       alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
                       className="w-full h-full object-cover object-top"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = "/placeholder.svg";
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-foreground/15 to-transparent rounded-3xl" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
@@ -149,6 +154,11 @@ export default function Echipa() {
                       src={member.image}
                       alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
                       className="w-full h-full object-cover object-top"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.onerror = null;
+                        target.src = "/placeholder.svg";
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-foreground/15 to-transparent rounded-3xl" />
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">

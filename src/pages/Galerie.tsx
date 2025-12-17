@@ -1,25 +1,31 @@
 import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Instagram, Facebook, ExternalLink } from 'lucide-react';
+import { Instagram, Facebook, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useMemo, useState } from 'react';
 
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&h=600&fit=crop', alt: 'Câine fericit la cabinet veterinar' },
-  { src: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?w=600&h=600&fit=crop', alt: 'Pisică la consultație' },
-  { src: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=600&h=600&fit=crop', alt: 'Câine zâmbitor' },
-  { src: 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=600&h=600&fit=crop', alt: 'Câine și pisică împreună' },
-  { src: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&h=600&fit=crop', alt: 'Pisică după tratament' },
-  { src: 'https://images.unsplash.com/photo-1587764379873-97837921fd44?w=600&h=600&fit=crop', alt: 'Cabinet veterinar modern' },
-  { src: 'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=600&fit=crop', alt: 'Câini la plimbare' },
-  { src: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?w=600&h=600&fit=crop', alt: 'Pisică la control' },
-  { src: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop', alt: 'Golden Retriever fericit' },
-  { src: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=600&fit=crop', alt: 'Pisică portocalie' },
-  { src: 'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=600&h=600&fit=crop', alt: 'Pisică la consultație veterinară' },
-  { src: 'https://images.unsplash.com/photo-1561037404-61cd46aa615b?w=600&h=600&fit=crop', alt: 'Câine la clinică' },
+  { src: '/gallery/gallery-1.png', alt: 'Ecografie vezică' },
+  { src: '/gallery/gallery-2.png', alt: 'Pisică cu hanorac roșu' },
+  { src: '/gallery/gallery-3.png', alt: 'Radiografie membru anterior' },
+  { src: '/gallery/gallery-4.png', alt: 'Cocker spaniel' },
+  { src: '/gallery/gallery-5.png', alt: 'Cățel cane corso' },
+  { src: '/gallery/gallery-6.png', alt: 'Cățel și lalele' },
+  { src: '/gallery/gallery-7.png', alt: 'Pui de pisică nou-născut' },
+  { src: '/gallery/gallery-8.png', alt: 'Intervenție chirurgicală' },
+  { src: '/gallery/gallery-9.png', alt: 'Echipa cu pacient' },
 ];
 
 export default function Galerie() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const pageSize = 6;
+  const [page, setPage] = useState(1);
+  const totalPages = Math.max(1, Math.ceil(galleryImages.length / pageSize));
+  const safePage = Math.min(page, totalPages);
+  const pagedImages = useMemo(
+    () => galleryImages.slice((safePage - 1) * pageSize, safePage * pageSize),
+    [safePage]
+  );
 
   return (
     <>
@@ -48,8 +54,8 @@ export default function Galerie() {
         {/* Gallery grid */}
         <section className="section-padding bg-white" ref={ref}>
           <div className="container-custom">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
-              {galleryImages.map((image, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+              {pagedImages.map((image, index) => (
                 <div
                   key={index}
                   className={`relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden group transition-all duration-500 ${
@@ -70,6 +76,29 @@ export default function Galerie() {
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 text-sm text-gray-600">
+              <span>
+                Pagina {safePage} / {totalPages} · {galleryImages.length} imagini
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={safePage === 1}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                  Înapoi
+                </button>
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={safePage === totalPages}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent"
+                >
+                  Înainte
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </section>
