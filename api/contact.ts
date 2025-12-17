@@ -39,7 +39,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!requestType) return badRequest(res, "Tipul solicitării este obligatoriu.");
   if (!message) return badRequest(res, "Mesajul este obligatoriu.");
 
-  const smtpHost = process.env.ZOHO_SMTP_HOST || "smtp.zoho.eu";
+  // Conform Zoho EU: smtppro.zoho.eu (465 SSL / 587 TLS)
+  const smtpHost = process.env.ZOHO_SMTP_HOST || "smtppro.zoho.eu";
   const smtpPort = Number(process.env.ZOHO_SMTP_PORT || 465);
   const smtpSecure =
     (process.env.ZOHO_SMTP_SECURE || "").toLowerCase() === "true" ||
@@ -75,15 +76,40 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     message,
   ].join("\n");
 
-  await transporter.sendMail({
-    from,
-    to,
-    subject,
-    text,
-    replyTo: email || undefined,
-  });
+  try {
+    // confirmă conexiunea/configurația SMTP (nu loghează credențiale)
+    await transporter.verify();
 
-  return res.status(200).json({ ok: true });
+    const info = await transporter.sendMail({
+      from,
+      to,
+      subject,
+      text,
+      replyTo: email || undefined,
+    });
+
+    console.log("contact_email_sent", {
+      to,
+      from,
+      messageId: info.messageId,
+      requestType,
+    });
+
+    return res.status(200).json({ ok: true, messageId: info.messageId });
+  } catch (err: any) {
+    console.error("contact_email_error", {
+      message: err?.message,
+      code: err?.code,
+      response: err?.response,
+      command: err?.command,
+    });
+    return res.status(500).json({
+      ok: false,
+      error:
+        err?.message ||
+        "Eroare la trimiterea emailului (verifică SMTP/Zoho).",
+    });
+  }
 }
 
 
