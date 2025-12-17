@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/zohoverify/:path*", "destination": "/zohoverify/:path*" },
+    { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }

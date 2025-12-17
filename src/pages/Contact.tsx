@@ -52,15 +52,44 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: 'Mesaj trimis cu succes!',
-      description: 'Te vom contacta în cel mai scurt timp.',
-    });
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          // honeypot (nu afișăm input în UI)
+          company: '',
+        }),
+      });
+
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        throw new Error(data?.error || 'Nu am putut trimite mesajul.');
+      }
+
+      setIsSubmitted(true);
+      toast({
+        title: 'Mesaj trimis cu succes!',
+        description: 'Te vom contacta în cel mai scurt timp.',
+      });
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        requestType: '',
+        message: '',
+      });
+    } catch (err: any) {
+      toast({
+        title: 'Eroare la trimitere',
+        description: err?.message || 'Încearcă din nou mai târziu.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
