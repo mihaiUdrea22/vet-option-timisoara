@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/verifyforzoho.html", "destination": "/verifyforzoho.html" },
+    { "source": "/zohoverify/:path*", "destination": "/zohoverify/:path*" },
     { "source": "/(.*)", "destination": "/" }
   ]
 }
