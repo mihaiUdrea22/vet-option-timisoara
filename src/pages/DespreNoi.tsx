@@ -111,7 +111,7 @@ export default function DespreNoi() {
               </div>
               <div className="relative">
                 <img
-                  src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=500&fit=crop"
+                  src="/gallery/vet_option.png"
                   alt="Interior cabinet veterinar modern Vet Option Timișoara"
                   className="rounded-3xl shadow-large w-full h-[400px] object-cover"
                 />
