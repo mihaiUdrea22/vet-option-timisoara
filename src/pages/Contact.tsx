@@ -314,7 +314,7 @@ export default function Contact() {
                 </h2>
                 <div className="bg-white rounded-3xl overflow-hidden shadow-card h-[400px] lg:h-[480px]">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2784.268755377!2d21.2267!3d45.7489!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDXCsDQ0JzU2LjAiTiAyMcKwMTMnMzYuMCJF!5e0!3m2!1sen!2sro!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d503.424964381465!2d21.24088720367549!3d45.77380847221686!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x474567a06b9e27cf%3A0xcc13f0f6c1bcfd5f!2sStrada%20Ion%20Roat%C4%83%2048%2C%20Timi%C8%99oara%20300254!5e0!3m2!1sen!2sro!4v1766317104544!5m2!1sen!2sro"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
