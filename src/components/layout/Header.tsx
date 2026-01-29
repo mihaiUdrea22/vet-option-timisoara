@@ -11,7 +11,7 @@ const navigation = [
   { name: 'Servicii', href: '/servicii' },
   { name: 'Urgențe 24/7', href: '/urgente' },
   { name: 'Echipa', href: '/echipa' },
-  { name: 'Articole', href: '/articole' },
+  { name: 'Educație', href: '/articole' },
   { name: 'Galerie', href: '/galerie' },
   { name: 'Contact', href: '/contact' },
 ];
@@ -43,7 +43,7 @@ export default function Header() {
           <div className="flex flex-col md:flex-row items-center md:justify-between py-2.5 md:py-2 gap-y-2 md:gap-y-0 text-sm">
             <div className="flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span className="font-medium">Urgențe NON STOP 24/7</span>
+              <span className="font-medium">Urgențe ON CALL 24/7</span>
             </div>
             <a 
               href="tel:+40723143405" 

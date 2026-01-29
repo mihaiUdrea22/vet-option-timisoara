@@ -18,7 +18,7 @@ const trustItems = [
   },
   {
     icon: Clock,
-    title: 'Urgențe NON STOP',
+    title: 'Urgențe ON CALL 24/7',
     subtitle: 'Disponibili 24/7 în Timișoara',
     color: 'text-teal-600',
     bgColor: 'bg-teal-50',

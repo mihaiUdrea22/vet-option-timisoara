@@ -63,7 +63,7 @@ export default function ArticleDetail() {
             to="/articole"
             className="text-sm text-blue-600 hover:underline inline-flex items-center gap-2 mb-6"
           >
-            ← Înapoi la articole
+            ← Înapoi la educare și informare proprietar
           </Link>
 
           {loading && (

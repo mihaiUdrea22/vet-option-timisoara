@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import DespreNoi from "./pages/DespreNoi";
 import Servicii from "./pages/Servicii";
@@ -20,6 +21,7 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import AdminArticles from "./pages/admin/Articles";
 import AdminEditArticle from "./pages/admin/EditArticle";
 import AdminAppointments from "./pages/admin/Appointments";
+import AdminGallery from "./pages/admin/Gallery";
 import { isAdminAuthenticated } from "./lib/adminAuth";
 
 const RequireAdmin = () => {
@@ -36,6 +38,7 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <HelmetProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -57,6 +60,7 @@ const App = () => (
               <Route path="/admin/articole" element={<AdminArticles />} />
               <Route path="/admin/articole/:id" element={<AdminEditArticle />} />
               <Route path="/admin/programari" element={<AdminAppointments />} />
+              <Route path="/admin/galerie" element={<AdminGallery />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -7,7 +7,7 @@ const steps = [
     number: '01',
     icon: Phone,
     title: 'Păstrează-ți calmul și sună imediat',
-    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili NON STOP, zi și noapte.',
+    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili ON CALL 24/7, zi și noapte.',
     color: 'bg-red-500',
   },
   {

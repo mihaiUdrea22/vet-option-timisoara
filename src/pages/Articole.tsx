@@ -31,7 +31,7 @@ export default function Articole() {
         .order("created_at", { ascending: false });
 
       if (error) {
-        setError("Nu s-au putut încărca articolele.");
+        setError("Nu s-au putut încărca materialele.");
         setArticles([]);
       } else {
         setArticles(data || []);
@@ -45,10 +45,10 @@ export default function Articole() {
   return (
     <>
       <Helmet>
-        <title>Articole și Sfaturi Veterinare | Vet Option Timișoara</title>
+        <title>Educare și informare proprietar | Vet Option Timișoara</title>
         <meta
           name="description"
-          content="Articole și sfaturi utile pentru sănătatea câinilor și pisicilor."
+          content="Materiale de educare și informare pentru proprietarii de animale de companie."
         />
       </Helmet>
       <Layout>
@@ -79,7 +79,7 @@ export default function Articole() {
             )}
             {!loading && !articles.length && !error && (
               <p className="text-center text-muted-foreground">
-                Nu există articole momentan.
+                Nu există materiale momentan.
               </p>
             )}
 

@@ -13,7 +13,7 @@ import {
 const services = [
   {
     icon: Siren,
-    title: 'Urgențe veterinare NON STOP',
+    title: 'Urgențe veterinare ON CALL 24/7',
     description: 'Disponibili 24/7 pentru orice situație critică. Intervenții rapide și eficiente.',
     color: 'text-red-500',
     bgColor: 'bg-red-50',
@@ -72,7 +72,7 @@ export default function ServicesSection() {
           <h2 className="section-title">Ce putem face pentru companionul tău</h2>
           <p className="section-subtitle mx-auto mt-5">
             Oferim o gamă completă de servicii veterinare, de la consultații de rutină 
-            până la intervenții chirurgicale complexe și urgențe NON STOP.
+            până la intervenții chirurgicale complexe și urgențe ON CALL 24/7.
           </p>
         </div>
 

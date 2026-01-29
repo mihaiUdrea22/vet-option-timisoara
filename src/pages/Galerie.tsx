@@ -2,35 +2,41 @@ import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Instagram, Facebook, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabaseClient';
 
-const galleryImages = [
-  { src: '/gallery/gallery-1.png', alt: 'Ecografie vezică' },
-  { src: '/gallery/gallery-2.png', alt: 'Pisică cu hanorac roșu' },
-  { src: '/gallery/gallery-3.png', alt: 'Radiografie membru anterior' },
-  { src: '/gallery/gallery-4.png', alt: 'Cocker spaniel' },
-  { src: '/gallery/gallery-5.png', alt: 'Cățel cane corso' },
-  { src: '/gallery/gallery-6.png', alt: 'Cățel și lalele' },
-  { src: '/gallery/gallery-7.png', alt: 'Pui de pisică nou-născut' },
-  { src: '/gallery/gallery-8.png', alt: 'Intervenție chirurgicală' },
-  { src: '/gallery/gallery-9.png', alt: 'Echipa cu pacient' },
-];
+type GalleryImage = { id: string; url: string; alt: string | null };
 
 export default function Galerie() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const pageSize = 6;
   const [page, setPage] = useState(1);
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const { data, error } = await supabase
+        .from('gallery_images')
+        .select('id, url, alt')
+        .order('created_at', { ascending: false });
+      if (!error) setGalleryImages((data ?? []).map((r) => ({ id: r.id, url: r.url, alt: r.alt })));
+      setLoading(false);
+    };
+    fetchImages();
+  }, []);
+
   const totalPages = Math.max(1, Math.ceil(galleryImages.length / pageSize));
   const safePage = Math.min(page, totalPages);
   const pagedImages = useMemo(
     () => galleryImages.slice((safePage - 1) * pageSize, safePage * pageSize),
-    [safePage]
+    [galleryImages, safePage]
   );
 
   return (
     <>
       <Helmet>
-        <title>Galerie Foto | Vet Option Timișoara - Cabinet Veterinar</title>
+        <title>Galerie Foto | Vet Option Timișoara - Clinica Veterinară</title>
         <meta 
           name="description" 
           content="Galerie foto cu pacienții și echipa Vet Option Timișoara. Urmărește-ne pe Instagram și Facebook pentru povești din clinică." 
@@ -54,52 +60,62 @@ export default function Galerie() {
         {/* Gallery grid */}
         <section className="section-padding bg-white" ref={ref}>
           <div className="container-custom">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
-              {pagedImages.map((image, index) => (
-                <div
-                  key={index}
-                  className={`relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden group transition-all duration-500 ${
-                    isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                  }`}
-                  style={{ transitionDelay: `${index * 30}ms` }}
-                >
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-300 flex items-center justify-center">
-                    <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                      <Instagram className="w-8 h-8 text-white mx-auto mb-2" />
-                      <span className="text-white text-sm font-medium">Vezi pe Instagram</span>
+            {loading ? (
+              <p className="text-center text-muted-foreground py-12">Se încarcă galeria…</p>
+            ) : galleryImages.length === 0 ? (
+              <p className="text-center text-muted-foreground py-12">
+                Nu există imagini în galerie momentan.
+              </p>
+            ) : (
+              <>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+                  {pagedImages.map((image, index) => (
+                    <div
+                      key={image.id}
+                      className={`relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden group transition-all duration-500 ${
+                        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                      }`}
+                      style={{ transitionDelay: `${index * 30}ms` }}
+                    >
+                      <img
+                        src={image.url}
+                        alt={image.alt || 'Galerie'}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-300 flex items-center justify-center">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
+                          <Instagram className="w-8 h-8 text-white mx-auto mb-2" />
+                          <span className="text-white text-sm font-medium">Vezi pe Instagram</span>
+                        </div>
+                      </div>
                     </div>
+                  ))}
+                </div>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 text-sm text-gray-600">
+                  <span>
+                    Pagina {safePage} / {totalPages} · {galleryImages.length} imagini
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setPage((p) => Math.max(1, p - 1))}
+                      disabled={safePage === 1}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                      Înapoi
+                    </button>
+                    <button
+                      onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={safePage === totalPages}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent"
+                    >
+                      Înainte
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
                   </div>
                 </div>
-              ))}
-            </div>
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-6 text-sm text-gray-600">
-              <span>
-                Pagina {safePage} / {totalPages} · {galleryImages.length} imagini
-              </span>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setPage((p) => Math.max(1, p - 1))}
-                  disabled={safePage === 1}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                  Înapoi
-                </button>
-                <button
-                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                  disabled={safePage === totalPages}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border hover:bg-gray-50 disabled:opacity-50 disabled:hover:bg-transparent"
-                >
-                  Înainte
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
+              </>
+            )}
           </div>
         </section>
 

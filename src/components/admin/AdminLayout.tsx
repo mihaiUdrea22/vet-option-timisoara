@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { CalendarCheck, FileText, LayoutDashboard, Menu, X } from "lucide-react";
+import { CalendarCheck, FileText, ImageIcon, LayoutDashboard, Menu, X } from "lucide-react";
 
 type Props = {
   title: string;
@@ -10,7 +10,8 @@ type Props = {
 const navItems = [
   { label: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
   { label: "Programări", href: "/admin/programari", icon: CalendarCheck },
-  { label: "Articole", href: "/admin/articole", icon: FileText },
+  { label: "Educare și informare proprietar", href: "/admin/articole", icon: FileText },
+  { label: "Galerie", href: "/admin/galerie", icon: ImageIcon },
 ];
 
 export default function AdminLayout({ title, children }: Props) {

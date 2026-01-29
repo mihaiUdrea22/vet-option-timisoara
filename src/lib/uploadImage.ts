@@ -33,3 +33,39 @@ export async function uploadImage(file: File) {
 
   return publicData.publicUrl;
 }
+
+const galleryFolder = "gallery";
+
+/** Upload pentru galerie: salvează în folderul gallery al bucket-ului. Returnează { url, path } pentru a putea șterge din Storage la ștergere. */
+export async function uploadGalleryImage(file: File): Promise<{ url: string; path: string }> {
+  const bucket =
+    import.meta.env.VITE_SUPABASE_BUCKET || "articles";
+  const ext = file.name.split(".").pop() || "png";
+  const filePath = `${galleryFolder}/${Date.now()}-${Math.random()
+    .toString(36)
+    .slice(2)}.${ext}`;
+
+  const { data, error } = await supabase.storage
+    .from(bucket)
+    .upload(filePath, file, {
+      cacheControl: "3600",
+      upsert: false,
+      contentType: file.type || "image/png",
+    });
+
+  if (error || !data) {
+    throw new Error(
+      error?.message || "Upload galerie eșuat - verifică bucket-ul în Supabase"
+    );
+  }
+
+  const { data: publicData } = supabase.storage
+    .from(bucket)
+    .getPublicUrl(data.path);
+
+  if (!publicData?.publicUrl) {
+    throw new Error("Nu am putut obține URL-ul public al imaginii");
+  }
+
+  return { url: publicData.publicUrl, path: data.path };
+}

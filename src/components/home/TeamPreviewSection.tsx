@@ -22,19 +22,37 @@ const teamMembers = [
     name: 'Carla',
     role: 'Studentă medicină veterinară',
     specialty: 'Prim ajutor • Suport comportamental',
-    image: '/team/carla.jpeg',
+    image: '/team/carla.png',
   },
   {
     name: 'Alexandra',
     role: 'Studentă medicină veterinară',
     specialty: 'Interes: chirurgie, perfecționare',
-    image: '/placeholder.svg',
+    image: '/team/carla.jpeg',
+  },
+  {
+    name: 'Ioana',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Medicină internă • Chirurgie animale de companie',
+    image: '/team/ioana.png',
+  },
+  {
+    name: 'Alexandra Andras',
+    role: 'Medic veterinar',
+    specialty: 'Urgență • Diagnostic imagistic • Medicină internă',
+    image: '/team/alexandra-andras.png',
   },
   {
     name: 'Răzvan',
     role: 'Medic veterinar chirurg',
     specialty: 'Neurochirurgie • Ortopedie • Oncologică',
     image: '/team/razvan.jpeg',
+  },
+  {
+    name: 'Daria',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Îngrijire pacienți • Dezvoltare continuă',
+    image: '/team/daria.png',
   },
 ];
 
@@ -91,7 +109,7 @@ export default function TeamPreviewSection() {
                   <div className="relative h-72 overflow-hidden">
                     <img
                       src={member.image}
-                      alt={`${member.name} - ${member.role} cabinet veterinar Timișoara`}
+                      alt={`${member.name} - ${member.role} clinică veterinară Timișoara`}
                       className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                       onError={(e) => {
                         const target = e.currentTarget;

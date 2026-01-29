@@ -35,7 +35,7 @@ const steps = [
     number: '01',
     icon: Phone,
     title: 'Păstrează-ți calmul și sună imediat',
-    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili NON STOP.',
+    description: 'Contactează-ne la +40 723 143 405 – suntem disponibili ON CALL 24/7.',
   },
   {
     number: '02',
@@ -77,10 +77,10 @@ export default function Urgente() {
   return (
     <>
       <Helmet>
-        <title>Urgențe Veterinare NON STOP 24/7 | Vet Option Timișoara</title>
+        <title>Urgențe Veterinare ON CALL 24/7 | Vet Option Timișoara</title>
         <meta 
           name="description" 
-          content="Urgențe veterinare NON STOP în Timișoara. Cabinet medical veterinar disponibil 24/7 pentru câini și pisici. Sună acum: +40 723 143 405" 
+          content="Urgențe veterinare ON CALL 24/7 în Timișoara. Clinică medicală veterinară disponibilă 24/7 pentru câini și pisici. Sună acum: +40 723 143 405" 
         />
       </Helmet>
       <Layout>
@@ -90,9 +90,9 @@ export default function Urgente() {
             <div className="max-w-3xl mx-auto text-center">
               <div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-red-100 text-red-700 rounded-full text-sm font-semibold mb-6">
                 <span className="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse" />
-                Disponibili NON STOP – 24/7
+                Disponibili ON CALL 24/7 – 24/7
               </div>
-              <h1 className="section-title">Urgențe veterinare NON STOP, 24/7</h1>
+              <h1 className="section-title">Urgențe veterinare ON CALL 24/7, 24/7</h1>
               <p className="section-subtitle mx-auto mt-6">
                 În caz de urgență, fiecare minut contează. Suntem aici pentru tine și pentru companionul tău, 
                 oricând ai nevoie, zi sau noapte. Nu ezita să suni!
@@ -251,7 +251,7 @@ export default function Urgente() {
               Nu aștepta – în caz de urgență, sună imediat!
             </h2>
             <p className="text-white/90 mb-8 max-w-xl mx-auto text-lg">
-              Echipa noastră este pregătită NON STOP să intervină rapid și profesionist.
+              Echipa noastră este pregătită ON CALL 24/7 să intervină rapid și profesionist.
             </p>
             <a href="tel:+40723143405" className="btn-white px-10 py-5 text-lg">
               <Phone className="w-6 h-6" />

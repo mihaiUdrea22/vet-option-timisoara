@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CalendarCheck, FileText, ShieldCheck } from "lucide-react";
+import { CalendarCheck, FileText, ImageIcon, ShieldCheck } from "lucide-react";
 import AdminLayout from "@/components/admin/AdminLayout";
 
 export default function AdminDashboard() {
@@ -38,11 +38,11 @@ export default function AdminDashboard() {
               <p className="text-xs uppercase tracking-wide text-gray-500">
                 Conținut
               </p>
-              <p className="font-semibold text-lg">Articole</p>
+              <p className="font-semibold text-lg">Educare și informare proprietar</p>
             </div>
           </div>
           <p className="text-sm text-gray-600">
-            Creează, editează și gestionează articolele publicate pe site.
+            Creează, editează și gestionează materialele publicate pe site.
           </p>
         </Link>
 
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
             </div>
           </div>
           <p className="text-sm text-gray-600">
-            Ai acces la modulele de programări și articole. Folosește meniul din stânga
+            Ai acces la programări, educare proprietar și galerie. Folosește meniul din stânga
             pentru navigare.
           </p>
         </div>

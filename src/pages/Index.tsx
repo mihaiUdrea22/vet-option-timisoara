@@ -14,12 +14,12 @@ export default function Index() {
   return (
     <>
       <Helmet>
-        <title>Vet Option Timișoara | Cabinet Veterinar Urgențe NON STOP 24/7</title>
+        <title>Vet Option Timișoara | Clinica Veterinară Urgențe ON CALL 24/7</title>
         <meta 
           name="description" 
-          content="Cabinet medical veterinar în Timișoara cu urgențe NON STOP. Chirurgie avansată, ATI, ortopedie și neurochirurgie pentru câini și pisici. Sună acum: +40 723 143 405" 
+          content="Clinică medicală veterinară în Timișoara cu urgențe ON CALL 24/7. Chirurgie avansată, ATI, ortopedie și neurochirurgie pentru câini și pisici. Sună acum: +40 723 143 405" 
         />
-        <meta name="keywords" content="cabinet veterinar Timișoara, urgențe veterinare NON STOP, chirurgie veterinară, ATI veterinar, ortopedie câini pisici" />
+        <meta name="keywords" content="clinică veterinară Timișoara, urgențe veterinare ON CALL 24/7, chirurgie veterinară, ATI veterinar, ortopedie câini pisici" />
         <link rel="canonical" href="https://clinica-veterinara-timisoara.ro/" />
       </Helmet>
       <Layout>

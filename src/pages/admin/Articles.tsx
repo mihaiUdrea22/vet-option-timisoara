@@ -33,7 +33,7 @@ export default function AdminArticles() {
       .order("created_at", { ascending: false });
 
     if (error) {
-      setError("Eroare la încărcarea articolelor");
+      setError("Eroare la încărcarea materialelor");
       setArticles([]);
     } else {
       setArticles(data || []);
@@ -61,7 +61,7 @@ export default function AdminArticles() {
   };
 
   return (
-    <AdminLayout title="Articole">
+    <AdminLayout title="Educare și informare proprietar">
       <div className="flex items-center justify-between mb-4 text-sm">
         {copyMsg && <span className="text-green-600">{copyMsg}</span>}
         <div className="flex items-center gap-3">
@@ -91,7 +91,7 @@ export default function AdminArticles() {
         <div>
           <div className="flex items-center justify-between mb-2">
             <h2 className="text-xl font-semibold">
-              Articole existente ({articles.length})
+              Materiale existente ({articles.length})
             </h2>
           </div>
 

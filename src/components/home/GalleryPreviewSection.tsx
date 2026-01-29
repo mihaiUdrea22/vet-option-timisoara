@@ -1,20 +1,26 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Instagram, ChevronRight } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient';
 
-const galleryImages = [
-  { src: '/gallery/gallery-1.png', alt: 'Ecografie vezică' },
-  { src: '/gallery/gallery-2.png', alt: 'Pisică cu hanorac roșu' },
-  { src: '/gallery/gallery-3.png', alt: 'Radiografie membru anterior' },
-  { src: '/gallery/gallery-4.png', alt: 'Cocker spaniel' },
-  { src: '/gallery/gallery-5.png', alt: 'Cățel cane corso' },
-  { src: '/gallery/gallery-6.png', alt: 'Cățel și lalele' },
-  { src: '/gallery/gallery-7.png', alt: 'Pui de pisică nou-născut' },
-  { src: '/gallery/gallery-8.png', alt: 'Intervenție chirurgicală' },
-];
+type GalleryImage = { id: string; url: string; alt: string | null };
 
 export default function GalleryPreviewSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      const { data, error } = await supabase
+        .from('gallery_images')
+        .select('id, url, alt')
+        .order('created_at', { ascending: false })
+        .limit(8);
+      if (!error) setGalleryImages((data ?? []).map((r) => ({ id: r.id, url: r.url, alt: r.alt })));
+    };
+    fetchImages();
+  }, []);
 
   return (
     <section className="section-padding bg-white">
@@ -33,26 +39,28 @@ export default function GalleryPreviewSection() {
         </div>
 
         {/* Gallery grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {galleryImages.map((image, index) => (
-            <div
-              key={index}
-              className={`relative aspect-square rounded-2xl overflow-hidden group transition-all duration-500 ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
-              style={{ transitionDelay: `${index * 50}ms` }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors duration-300 flex items-center justify-center">
-                <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {galleryImages.length > 0 && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {galleryImages.map((image, index) => (
+              <div
+                key={image.id}
+                className={`relative aspect-square rounded-2xl overflow-hidden group transition-all duration-500 ${
+                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                }`}
+                style={{ transitionDelay: `${index * 50}ms` }}
+              >
+                <img
+                  src={image.url}
+                  alt={image.alt || 'Galerie'}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/30 transition-colors duration-300 flex items-center justify-center">
+                  <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Social CTA */}
         <div 

@@ -26,7 +26,7 @@ const testimonials = [
   {
     name: 'Ana & Bruno',
     pet: 'Metis',
-    text: 'Ne-am mutat recent în Timișoara și ne-am dorit un cabinet de încredere. Aici am găsit atât empatie, cât și aparatură modernă. Vin cu drag la controalele periodice.',
+    text: 'Ne-am mutat recent în Timișoara și ne-am dorit o clinică de încredere. Aici am găsit atât empatie, cât și aparatură modernă. Vin cu drag la controalele periodice.',
     rating: 5,
   },
   {

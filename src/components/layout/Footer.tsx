@@ -12,7 +12,7 @@ const quickLinks = [
 ];
 
 const services = [
-  { name: 'Urgențe NON STOP', href: '/urgente' },
+  { name: 'Urgențe ON CALL 24/7', href: '/urgente' },
   { name: 'Chirurgie', href: '/servicii' },
   { name: 'ATI Veterinar', href: '/servicii' },
   { name: 'Consultații', href: '/servicii' },
@@ -41,7 +41,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
-              Cabinet Medical Veterinar cu urgențe NON STOP în Timișoara. Oferim servicii de chirurgie avansată, 
+              Clinică Medicală Veterinară cu urgențe ON CALL 24/7 în Timișoara. Oferim servicii de chirurgie avansată, 
               ATI și îngrijire completă pentru câini și pisici.
             </p>
             <div className="flex gap-3">
@@ -111,7 +111,7 @@ export default function Footer() {
                 >
                   <Phone className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
                   <div>
-                    <span className="block font-medium text-white group-hover:text-primary">Urgențe NON STOP</span>
+                    <span className="block font-medium text-white group-hover:text-primary">Urgențe ON CALL 24/7</span>
                     <span className="text-gray-400">+40 723 143 405</span>
                   </div>
                 </a>
@@ -128,7 +128,7 @@ export default function Footer() {
                 <div>
                   <span className="block font-medium text-white">Program</span>
                   <span className="text-gray-400">Luni–Vineri: 10:00 – 20:00</span><br />
-                  <span className="text-gray-400">Urgențe: NON STOP</span>
+                  <span className="text-gray-400">Urgențe: ON CALL 24/7</span>
                 </div>
               </li>
             </ul>
@@ -141,7 +141,7 @@ export default function Footer() {
         <div className="container-custom py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
           <p className="text-gray-500">© {new Date().getFullYear()} Vet Option Timișoara. Toate drepturile rezervate.</p>
           <p className="text-gray-600">
-            Cabinet Medical Veterinar – Urgențe NON STOP
+            Clinică Medicală Veterinară – Urgențe ON CALL 24/7
           </p>
         </div>
       </div>

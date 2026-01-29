@@ -10,36 +10,57 @@ const teamMembers = [
     name: 'Răzvan',
     role: 'Medic veterinar chirurg',
     specialty: 'Neurochirurgie • Ortopedie • Chirurgie oncologică',
-    bio: 'Absolvent al Facultății de Medicină Veterinară Iași, și-a continuat formarea în neurologie și neurochirurgie la Spitalul Universitar din Napoli, apoi și-a perfecționat abilitățile clinice în Marea Britanie prin multiple specializări în chirurgie generală, neurochirurgie, ortopedie și chirurgie oncologică. Din 2020 urmează doctoratul în chirurgia ortopedică veterinară la Timișoara, introducând în România tehnici minim invazive pentru ruptura ligamentului încrucișat cranial la câini. A lucrat cu chirurgi de elită din Europa și îmbină practica chirurgicală cu activitatea didactică la Facultatea de Medicină Veterinară din Timișoara. Își găsește echilibrul în aventuri pe munte, pe pârtia de schi sau explorând locuri noi alături de prieteni.',
+    bio: 'Răzvan a absolvit Facultatea de Medicină Veterinară la Iași, continuându-și formarea în neurologie și neurochirurgie la Spitalul Universitar din Napoli. Apoi, și-a perfecționat abilitățile clinice în Marea Britanie prin multiple specializări în chirurgie generală, neurochirurgie, ortopedie și chirurgie oncologică.\n\nÎn 2024 a finalizat un doctorat la Facultatea de Medicina Veterinara din Timișoara, axat pe chirurgia ortopedică veterinară, introducând în România o tehnică, nouă, minim invazivă pentru remedierea rupturii ligamentului încrucișat cranial la câini. Pe parcursul doctoratului, a petrecut timp în Franța pentru a-și aprofunda cunoștințele pentru a realiza strânse colaborări cu numeroși chirurgi de elită din Europa.\n\nÎn prezent, îmbină practica chirurgicală cu activitatea didactică la Facultatea de Medicină Veterinară din Timișoara, fiind dedicat atât pacienților, cât și studenților.\n\nÎn afara profesiei, Răzvan își găsește echilibrul în aventuri – fie pe munte, pe pârtia de schi sau explorând locuri noi alături de prieteni.',
     image: '/team/razvan.jpeg',
   },
   {
     name: 'Andreea',
     role: 'Medic veterinar',
     specialty: 'Medicină internă • Ecografie abdominală',
-    bio: 'A absolvit Facultatea de Medicină Veterinară din Timișoara în 2021 și, de atunci, își dedică toată energia îngrijirii și sănătății animalelor. Cu patru ani de experiență, s-a specializat în medicina internă și ecografia abdominală, perfecționându-și constant cunoștințele prin cursuri și formări periodice. Se remarcă prin atenția meticuloasă pentru fiecare pacient, iar profesionalismul, empatia și devotamentul o recomandă drept un medic de care suntem mândri. În afara cabinetului, își găsește inspirația în natură, pe care o surprinde în imagini memorabile, și este o călătoare pasionată, mereu în căutarea unor experiențe noi.',
+    bio: 'A absolvit Facultatea de Medicină Veterinară din Timișoara în 2021 și, de atunci, își dedică întreaga energie îngrijirii și sănătății animalelor.\n\nCu un interes deosebit pentru medicina internă și ecografia abdominală, și-a consolidat experiența profesională prin cursuri și formări periodice. Se remarcă prin atenția meticuloasă acordată fiecărui pacient, iar profesionalismul, empatia și devotamentul o recomandă drept un medic de care suntem cu adevărat mândri.\n\nÎn afara clinicii, își găsește inspirația în natură, pe care o surprinde în fotografii memorabile, și este o călătoare pasionată, mereu în căutarea unor experiențe noi.',
     image: '/team/andreea.jpeg',
   },
   {
     name: 'Antonia',
     role: 'Studentă medicină veterinară',
     specialty: 'Interes: chirurgie veterinară',
-    bio: 'Studentă la Facultatea de Medicină Veterinară, definită de dragostea pentru animale și dorința de a le oferi cea mai bună îngrijire. Este atrasă de ramura chirurgicală și este motivată constant să învețe și să se perfecționeze. Ambițioasă, foarte empatică și comunicativă, aduce energie și dedicare în echipă.',
+    bio: 'Sunt Rădoi Antonia, studentă la Facultatea de Medicină Veterinară. Consider că dragostea mea pentru animale și dorința de a le oferi cea mai bună îngrijire mă definesc. În special, sunt atrasă de domeniul chirurgiei veterinare, iar dedicarea pentru această profesie mă motivează constant să învăț și să mă perfecționez. Sunt o persoană ambițioasă, empatică și comunicativă și mă bucur să fac parte din această echipă.',
     image: '/team/antonia.jpeg',
   },
   {
     name: 'Carla',
     role: 'Studentă medicină veterinară',
     specialty: 'Prim ajutor • Suport comportamental • Voluntariat',
-    bio: 'Originară din Strasbourg, studentă la Facultatea de Medicină Veterinară din Timișoara. A demonstrat o conduită excepțională în cabinet, aducând plus valoare în îngrijirea pacienților. A urmat cursuri de prim ajutor canin și suport comportamental pentru câini și pisici, iar în 2021 și-a dedicat mare parte din timpul liber voluntariatului într-un adăpost. În afara medicinei veterinare, este pasionată de drumeții, canicross, schi și călătorii, mereu în căutarea unor experiențe noi în natură.',
-    image: '/team/carla.jpeg',
+    bio: 'Originară din Strasbourg, studentă la Facultatea de Medicină Veterinară din Timișoara. A demonstrat o conduită excepțională în clinică, aducând plus valoare în îngrijirea pacienților. A urmat cursuri de prim ajutor canin și suport comportamental pentru câini și pisici, iar în 2021 și-a dedicat mare parte din timpul liber voluntariatului într-un adăpost. În afara medicinei veterinare, este pasionată de drumeții, canicross, schi și călătorii, mereu în căutarea unor experiențe noi în natură.',
+    image: '/team/carla.png',
   },
   {
     name: 'Alexandra',
     role: 'Studentă medicină veterinară',
     specialty: 'Interes: chirurgie • Dezvoltare clinică',
     bio: 'Studentă la Facultatea de Medicină Veterinară din Timișoara, remarcată prin munca enormă depusă zilnic și dorința continuă de a evolua. Se dedică dezvoltării abilităților clinice, cu interes deosebit pentru chirurgia veterinară. Modestia și seriozitatea se reflectă în felul în care învață și aplică cunoștințele, fiind mereu dornică să aprofundeze fiecare aspect al profesiei.',
-    image: '/placeholder.svg',
+    image: '/team/carla.jpeg',
+  },
+  {
+    name: 'Ioana',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Medicină internă • Chirurgie animale de companie',
+    bio: 'Studentă la Facultatea de Medicină Veterinară din Timișoara, având deja experiență practică acumulată anterior prin activitatea desfășurată într-o clinică veterinară, precum și prin implicarea în diverse evenimente caritabile dedicate animalelor, este perseverentă și dornică de a se perfecționa constant. Se remarcă printr-un parcurs academic remarcabil și un interes deosebit pentru medicina internă și chirurgia la animalele de companie. Își desfășoară activitatea cu profesionalism, dar și cu multă grijă și căldură față de fiecare pacient.',
+    image: '/team/ioana.png',
+  },
+  {
+    name: 'Alexandra Andras',
+    role: 'Medic veterinar',
+    specialty: 'Urgență • Diagnostic imagistic • Medicină internă',
+    bio: 'Medic veterinar, recunoscută pentru empatie, adaptabilitate și colaborare eficientă în echipă, cu formare solidă în medicina animalelor de companie și interes special pentru medicina de urgență, diagnostic imagistic și medicină internă. Are experiență clinică acumulată atât în România, cât și în Spania, în spitale veterinare de referință.\n\nÎn timpul liber, se relaxează prin învățarea limbilor străine și descoperirea altor culturi.',
+    image: '/team/alexandra-andras.png',
+  },
+  {
+    name: 'Daria',
+    role: 'Studentă medicină veterinară',
+    specialty: 'Îngrijire pacienți • Dezvoltare continuă',
+    bio: 'Daria este studentă la Facultatea de Medicină Veterinară, empatică și ambițioasă, mereu dornică să învețe și să se dezvolte. Abordează activitatea cu grijă și implicare, iar pasiunea pentru îngrijirea animalelor se reflectă în atenția pe care o acordă fiecărui pacient și proprietar. 🐾',
+    image: '/team/daria.png',
   },
 ];
 
@@ -50,7 +71,7 @@ export default function Echipa() {
   return (
     <>
       <Helmet>
-        <title>Echipa Medicală | Vet Option Timișoara - Cabinet Veterinar</title>
+        <title>Echipa Medicală | Vet Option Timișoara - Clinica Veterinară</title>
         <meta 
           name="description" 
           content="Cunoaște echipa de medici și tehnicieni veterinari de la Vet Option Timișoara. Profesioniști dedicați îngrijirii câinilor și pisicilor." 

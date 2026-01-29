@@ -9,7 +9,7 @@ import { toast } from '@/hooks/use-toast';
 const contactInfo = [
   {
     icon: Phone,
-    title: 'Telefon – Urgențe NON STOP',
+    title: 'Telefon – Urgențe ON CALL 24/7',
     value: '+40 723 143 405',
     href: 'tel:+40723143405',
     color: 'bg-red-50 text-red-600',
@@ -24,7 +24,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: 'Program',
-    value: 'Luni–Vineri: 10:00 – 20:00\nUrgențe: NON STOP',
+    value: 'Luni–Vineri: 10:00 – 20:00\nUrgențe: ON CALL 24/7',
     color: 'bg-amber-50 text-amber-600',
   },
 ];
@@ -99,10 +99,10 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contact și Programări | Vet Option Timișoara - Cabinet Veterinar</title>
+        <title>Contact și Programări | Vet Option Timișoara - Clinica Veterinară</title>
         <meta 
           name="description" 
-          content="Contactează Vet Option Timișoara pentru programări și consultații. Adresă: Str. Ion Roată 48. Telefon urgențe NON STOP: +40 723 143 405" 
+          content="Contactează Vet Option Timișoara pentru programări și consultații. Adresă: Str. Ion Roată 48. Telefon urgențe ON CALL 24/7: +40 723 143 405" 
         />
       </Helmet>
       <Layout>
@@ -350,7 +350,7 @@ export default function Contact() {
             </h2>
             <a href="tel:+40723143405" className="btn-white px-8 py-4 text-base inline-flex">
               <Phone className="w-5 h-5" />
-              +40 723 143 405 – NON STOP
+              +40 723 143 405 – ON CALL 24/7
             </a>
           </div>
         </section>

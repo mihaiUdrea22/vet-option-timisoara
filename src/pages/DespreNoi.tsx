@@ -31,7 +31,7 @@ const timeline = [
   {
     year: '2015',
     title: 'Înființarea clinicii',
-    description: 'Am deschis porțile primului cabinet în Timișoara, cu o echipă mică dar dedicată.',
+    description: 'Am deschis porțile primei clinici în Timișoara, cu o echipă mică dar dedicată.',
   },
   {
     year: '2017',
@@ -40,7 +40,7 @@ const timeline = [
   },
   {
     year: '2019',
-    title: 'Servicii NON STOP',
+    title: 'Servicii ON CALL 24/7',
     description: 'Am devenit prima clinică din zonă cu urgențe veterinare disponibile 24/7.',
   },
   {
@@ -62,10 +62,10 @@ export default function DespreNoi() {
   return (
     <>
       <Helmet>
-        <title>Despre Noi | Vet Option Timișoara - Cabinet Veterinar</title>
+        <title>Despre Noi | Vet Option Timișoara - Clinica Veterinară</title>
         <meta 
           name="description" 
-          content="Descoperă povestea Vet Option Timișoara - o echipă de medici veterinari dedicați, cu experiență în cazuri complexe și urgențe NON STOP." 
+          content="Descoperă povestea Vet Option Timișoara - o echipă de medici veterinari dedicați, cu experiență în cazuri complexe și urgențe ON CALL 24/7." 
         />
       </Helmet>
       <Layout>
@@ -112,7 +112,7 @@ export default function DespreNoi() {
               <div className="relative">
                 <img
                   src="/gallery/vet_option.png"
-                  alt="Interior cabinet veterinar modern Vet Option Timișoara"
+                  alt="Interior clinică veterinară modernă Vet Option Timișoara"
                   className="rounded-3xl shadow-large w-full h-[400px] object-cover"
                 />
                 <div className="absolute -bottom-6 -left-6 w-48 h-48 bg-primary/10 rounded-full blur-3xl" />

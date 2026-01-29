@@ -58,7 +58,7 @@ const reviews = [
     name: 'Vlad M.',
     pet: 'Mia – Pisică',
     rating: 5,
-    text: 'Blocaj urinar în weekend – am sunat și în 30 de minute eram la clinică. Mia a fost tratată imediat și acum e bine. Nu am cuvinte să mulțumesc pentru disponibilitatea NON STOP!',
+    text: 'Blocaj urinar în weekend – am sunat și în 30 de minute eram la clinică. Mia a fost tratată imediat și acum e bine. Nu am cuvinte să mulțumesc pentru disponibilitatea ON CALL 24/7!',
     date: 'Iulie 2024',
   },
   {
@@ -76,7 +76,7 @@ export default function Recenzii() {
   return (
     <>
       <Helmet>
-        <title>Recenzii și Testimoniale | Vet Option Timișoara - Cabinet Veterinar</title>
+        <title>Recenzii și Testimoniale | Vet Option Timișoara - Clinica Veterinară</title>
         <meta 
           name="description" 
           content="Citește recenziile proprietarilor care au apelat la Vet Option Timișoara. Rating 4.9/5 cu peste 100 de recenzii de 5 stele." 

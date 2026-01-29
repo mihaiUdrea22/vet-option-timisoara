@@ -3,17 +3,17 @@ import Layout from '@/components/layout/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { 
   Siren, HeartPulse, Stethoscope, Brain, ShieldCheck, 
-  Microscope, BedDouble, Phone, Check 
+  Microscope, BedDouble, Phone, Check, Bone, Eye, Smile, Activity
 } from 'lucide-react';
 
 const services = [
   {
     id: 'urgente',
     icon: Siren,
-    title: 'Urgențe veterinare NON STOP & ATI',
+    title: 'Urgențe veterinare ON CALL 24/7 & ATI',
     description: 'Suntem disponibili 24 de ore din 24, 7 zile din 7, pentru orice urgență veterinară. Echipa noastră de terapie intensivă este pregătită să intervină rapid și eficient.',
     features: [
-      'Disponibilitate NON STOP, inclusiv în weekend și sărbători',
+      'Disponibilitate ON CALL 24/7, inclusiv în weekend și sărbători',
       'Echipă specializată în terapie intensivă veterinară',
       'Monitorizare continuă pentru pacienții critici',
       'Echipamente de resuscitare și suport vital',
@@ -150,7 +150,7 @@ export default function Servicii() {
         <title>Servicii Veterinare | Vet Option Timișoara - Urgențe, Chirurgie, ATI</title>
         <meta 
           name="description" 
-          content="Servicii complete de medicină veterinară: urgențe NON STOP, chirurgie, ATI, neurochirurgie, consultații și imagistică pentru câini și pisici în Timișoara." 
+          content="Servicii complete de medicină veterinară: urgențe ON CALL 24/7, chirurgie, ATI, neurochirurgie, consultații și imagistică pentru câini și pisici în Timișoara." 
         />
       </Helmet>
       <Layout>
@@ -161,7 +161,7 @@ export default function Servicii() {
               <span className="text-primary font-medium text-sm uppercase tracking-wider">Servicii</span>
               <h1 className="section-title mt-4">Servicii veterinare complete</h1>
               <p className="section-subtitle mx-auto mt-6">
-                De la consultații de rutină până la intervenții chirurgicale complexe și urgențe NON STOP, 
+                De la consultații de rutină până la intervenții chirurgicale complexe și urgențe ON CALL 24/7, 
                 oferim tot ce are nevoie companionul tău pentru o viață sănătoasă.
               </p>
             </div>
