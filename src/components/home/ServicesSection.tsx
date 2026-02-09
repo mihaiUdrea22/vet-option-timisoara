@@ -20,18 +20,18 @@ const services = [
     bgColor: 'bg-teal-50',
   },
   {
-    icon: Brain,
-    title: 'Neurologie',
-    description: 'Evaluare neurologică și plan terapeutic pentru afecțiuni ale sistemului nervos.',
-    color: 'text-purple-500',
-    bgColor: 'bg-purple-50',
-  },
-  {
     icon: ShieldCheck,
     title: 'Medicină internă, prevenție și vaccinări',
     description: 'Consultații, vaccinări și prevenție pentru sănătatea companionului pe termen lung.',
     color: 'text-green-500',
     bgColor: 'bg-green-50',
+  },
+  {
+    icon: Brain,
+    title: 'Neurologie și neurochirurgie',
+    description: 'Evaluare neurologică și plan terapeutic pentru afecțiuni ale sistemului nervos.',
+    color: 'text-purple-500',
+    bgColor: 'bg-purple-50',
   },
   {
     icon: Smile,

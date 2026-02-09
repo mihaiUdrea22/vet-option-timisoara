@@ -7,14 +7,14 @@ import { Phone } from 'lucide-react';
 
 const teamMembers = [
   {
-    name: 'Răzvan',
+    name: 'Răzvan Cojocaru',
     role: 'Medic veterinar chirurg',
     specialty: 'Neurochirurgie • Ortopedie • Chirurgie oncologică',
     bio: 'Răzvan a absolvit Facultatea de Medicină Veterinară la Iași, continuându-și formarea în neurologie și neurochirurgie la Spitalul Universitar din Napoli. Apoi, și-a perfecționat abilitățile clinice în Marea Britanie prin multiple specializări în chirurgie generală, neurochirurgie, ortopedie și chirurgie oncologică.\n\nÎn 2024 a finalizat un doctorat la Facultatea de Medicina Veterinara din Timișoara, axat pe chirurgia ortopedică veterinară, introducând în România o tehnică, nouă, minim invazivă pentru remedierea rupturii ligamentului încrucișat cranial la câini. Pe parcursul doctoratului, a petrecut timp în Franța pentru a-și aprofunda cunoștințele pentru a realiza strânse colaborări cu numeroși chirurgi de elită din Europa.\n\nÎn prezent, îmbină practica chirurgicală cu activitatea didactică la Facultatea de Medicină Veterinară din Timișoara, fiind dedicat atât pacienților, cât și studenților.\n\nÎn afara profesiei, Răzvan își găsește echilibrul în aventuri – fie pe munte, pe pârtia de schi sau explorând locuri noi alături de prieteni.',
     image: '/team/razvan.jpeg',
   },
   {
-    name: 'Andreea',
+    name: 'Andreea Moise',
     role: 'Medic veterinar',
     specialty: 'Medicină internă • Ecografie abdominală',
     bio: 'A absolvit Facultatea de Medicină Veterinară din Timișoara în 2021 și, de atunci, își dedică întreaga energie îngrijirii și sănătății animalelor.\n\nCu un interes deosebit pentru medicina internă și ecografia abdominală, și-a consolidat experiența profesională prin cursuri și formări periodice. Se remarcă prin atenția meticuloasă acordată fiecărui pacient, iar profesionalismul, empatia și devotamentul o recomandă drept un medic de care suntem cu adevărat mândri.\n\nÎn afara clinicii, își găsește inspirația în natură, pe care o surprinde în fotografii memorabile, și este o călătoare pasionată, mereu în căutarea unor experiențe noi.',

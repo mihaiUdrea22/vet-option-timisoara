@@ -27,34 +27,6 @@ const values = [
   },
 ];
 
-const timeline = [
-  {
-    year: '2015',
-    title: 'Înființarea clinicii',
-    description: 'Am deschis porțile primei clinici în Timișoara, cu o echipă mică dar dedicată.',
-  },
-  {
-    year: '2017',
-    title: 'Extinderea serviciilor',
-    description: 'Am introdus servicii de chirurgie avansată și am investit în echipamente de ultimă generație.',
-  },
-  {
-    year: '2019',
-    title: 'Servicii ON CALL 24/7',
-    description: 'Am devenit prima clinică din zonă cu urgențe veterinare disponibile 24/7.',
-  },
-  {
-    year: '2021',
-    title: 'Secția ATI',
-    description: 'Am inaugurat secția de Anestezie și Terapie Intensivă, pentru cazurile cele mai grave.',
-  },
-  {
-    year: '2024',
-    title: 'Recunoaștere națională',
-    description: 'Primim distincția "Firma de Aur" pentru servicii veterinare de excelență.',
-  },
-];
-
 export default function DespreNoi() {
   const { ref: valuesRef, isVisible: valuesVisible } = useScrollAnimation<HTMLDivElement>();
   const { ref: timelineRef, isVisible: timelineVisible } = useScrollAnimation<HTMLDivElement>();
@@ -92,19 +64,15 @@ export default function DespreNoi() {
                 </h2>
                 <div className="space-y-4 text-muted-foreground leading-relaxed">
                   <p>
-                    Vet Option a fost înființată cu un scop simplu dar ambițios: să oferim animalelor de companie 
-                    din Timișoara și împrejurimi acces la servicii medicale veterinare complete, inclusiv pentru 
-                    cazurile cele mai grave, în orice moment al zilei sau nopții.
+                    Vet Option a fost înființat în anul 2022 din dorința de a oferi, nu doar în Timișoara, ci și în întreaga zonă de vest a României, un pachet complet de servicii dedicate sănătății și bunăstării animalelor de companie. Ne bazăm activitatea pe standarde înalte de calitate, expertiză medicală actualizată și o abordare empatică, centrată atât pe pacient, cât și pe proprietar.
                   </p>
                   <p>
-                    Am construit o echipă de medici și asistenți veterinari care împărtășesc aceeași viziune: 
-                    fiecare animal merită cea mai bună șansă la viață și sănătate. De aceea, ne-am specializat 
-                    în chirurgie avansată, ortopedie, neurochirurgie și terapie intensivă.
+                    În timp, Vet Option a devenit un loc de referință pentru cazurile medicale complexe, acolo unde este nevoie de experiență, rigoare și o viziune multidisciplinară. Ne concentrăm în special pe cazurile chirurgicale si de medicina interna complexe dar si de medicina regenerativă, neurologie precum și de fizioterapie și reabilitare.
+                    Fiecare caz este analizat în profunzime, fiecare decizie este atent fundamentată, iar fiecare plan terapeutic este personalizat, cu un singur obiectiv: cea mai bună șansă la recuperare și o calitate reală a vieții pentru pacient.
                   </p>
                   <p>
-                    Pentru noi, succesul nu se măsoară doar în cazuri rezolvate, ci și în încrederea pe care 
-                    proprietarii o au în echipa noastră. Comunicăm deschis, explicăm pe înțelesul tuturor și 
-                    suntem alături de fiecare familie în momentele dificile.
+                    Pentru noi, medicina veterinară nu înseamnă doar tratament, ci responsabilitate, precizie și continuitate. Înseamnă să fim acolo atunci când situațiile sunt dificile, când răspunsurile nu sunt simple și când animalele au nevoie de mai mult decât o soluție.
+                    La Vet Option, știm că fiecare pacient este un membru al familiei. De aceea, tratăm fiecare animal cu aceeași seriozitate, respect și grijă cu care ne-am dori să fie tratat al nostru. Vă suntem alături cu transparență, profesionalism și empatie, oferindu-vă nu doar soluții medicale, ci și încrederea că ați ales un partener real pentru sănătatea celor dragi.
                   </p>
                 </div>
               </div>
@@ -147,36 +115,32 @@ export default function DespreNoi() {
           </div>
         </section>
 
-        {/* Timeline */}
+        {/* Journey */}
         <section className="section-padding bg-white" ref={timelineRef}>
           <div className="container-custom">
             <div className="text-center mb-16">
               <span className="text-primary font-medium text-sm uppercase tracking-wider">Evoluție</span>
               <h2 className="section-title mt-4">Drumul nostru</h2>
             </div>
-            <div className="max-w-3xl mx-auto">
-              {timeline.map((item, index) => (
-                <div
-                  key={item.year}
-                  className={`flex gap-6 mb-8 last:mb-0 transition-all duration-500 ${
-                    timelineVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
-                  <div className="flex flex-col items-center">
-                    <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-heading font-bold text-sm">
-                      {item.year}
-                    </div>
-                    {index < timeline.length - 1 && (
-                      <div className="w-0.5 h-full bg-primary/20 mt-2" />
-                    )}
-                  </div>
-                  <div className="pb-8">
-                    <h3 className="font-heading font-semibold text-lg text-foreground mb-1">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </div>
-                </div>
-              ))}
+            <div
+              className={`max-w-4xl mx-auto bg-gradient-to-br from-primary-light via-white to-teal-50 rounded-3xl p-8 md:p-10 border border-border/50 shadow-card transition-all duration-700 ${
+                timelineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              }`}
+            >
+              <div className="space-y-6 text-muted-foreground leading-relaxed text-[16px] md:text-[17px]">
+                <p>
+                  Vet Option a luat naștere din dorința de a construi mai mult decât un cabinet veterinar – un loc în care medicina de excelență, tehnologia modernă și grija autentică pentru animale să se întâlnească firesc. Înființat în 2022, cabinetul a pornit ca un proiect construit pe pasiune, studiu continuu și respect profund pentru actul medical.
+                </p>
+                <p>
+                  De la început, ne-am propus să abordăm cazurile dintr-o perspectivă completă, să nu ne limităm la soluții standard și să ne asumăm provocările medicale complexe. Pe măsură ce experiența s-a acumulat, direcția noastră a devenit tot mai clară: dezvoltarea unui centru dedicat chirurgiei avansate, medicinii interne, medicinii regenerative, neurologiei și neurochirurgiei, precum și fizioterapiei și reabilitării medicale.
+                </p>
+                <p>
+                  Drumul nostru a însemnat investiții constante în echipamente, perfecționare profesională și colaborări multidisciplinare, dar și în construirea unei relații solide cu proprietarii de animale, bazată pe încredere, comunicare și transparență. Fiecare caz rezolvat, fiecare recuperare reușită și fiecare decizie luată responsabil au contribuit la conturarea identității Vet Option.
+                </p>
+                <p>
+                  Astăzi, Vet Option este rezultatul unui parcurs construit pas cu pas, cu răbdare și consecvență, având mereu același obiectiv: să oferim pacienților noștri cele mai bune opțiuni medicale, iar proprietarilor siguranța că animalele lor sunt pe mâini competente și dedicate.
+                </p>
+              </div>
             </div>
           </div>
         </section>

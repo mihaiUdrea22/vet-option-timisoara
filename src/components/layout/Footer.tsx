@@ -13,8 +13,8 @@ const quickLinks = [
 
 const services = [
   { name: 'Chirurgie', href: '/servicii' },
-  { name: 'Neurologie', href: '/servicii' },
   { name: 'Medicină internă', href: '/servicii' },
+  { name: 'Neurologie și neurochirurgie', href: '/servicii' },
   { name: 'Medicină dentară', href: '/servicii' },
   { name: 'Urgențe ON CALL 24/7 & ATI', href: '/urgente' },
 ];
