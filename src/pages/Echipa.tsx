@@ -67,6 +67,12 @@ const teamMembers = [
 export default function Echipa() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const veterinarians = teamMembers.filter((member) =>
+    member.role.toLowerCase().includes('medic veterinar')
+  );
+  const students = teamMembers.filter(
+    (member) => !member.role.toLowerCase().includes('medic veterinar')
+  );
 
   return (
     <>
@@ -78,13 +84,15 @@ export default function Echipa() {
       />
       <Layout>
         {/* Hero */}
-        <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/50 to-white">
-          <div className="container-custom">
-            <div className="max-w-3xl mx-auto text-center">
+        <section className="relative pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/70 via-white to-white overflow-hidden">
+          <div className="absolute -top-24 -left-20 w-72 h-72 bg-teal-200/35 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -right-20 w-80 h-80 bg-amber-100/45 rounded-full blur-3xl" />
+          <div className="container-custom relative">
+            <div className="max-w-4xl mx-auto text-center bg-white/80 backdrop-blur-sm border border-border/60 rounded-[2rem] px-6 py-10 md:px-10 md:py-12 shadow-sm">
               <span className="section-label">Echipa</span>
               <h1 className="section-title mt-4">Oamenii din spatele îngrijirii</h1>
               <p className="section-subtitle mx-auto mt-6">
-                O echipă de profesioniști dedicați, pasionați de medicina veterinară și de bunăstarea 
+                O echipă de profesioniști dedicați, pasionați de medicina veterinară și de bunăstarea
                 animalelor. Fiecare membru al echipei aduce expertiză, empatie și dedicare în munca sa.
               </p>
             </div>
@@ -92,46 +100,46 @@ export default function Echipa() {
         </section>
 
         {/* Team grid */}
-        <section className="section-padding bg-gray-50/50" ref={ref}>
+        <section className="section-padding bg-gradient-to-b from-gray-50/60 via-white to-gray-50/40" ref={ref}>
           <div className="container-custom space-y-10">
-            {/* Row 1: Răzvan & Andreea */}
-            <div className="grid md:grid-cols-2 gap-10">
-              {teamMembers.slice(0, 2).map((member, index) => (
+            {/* Row 1: Medici veterinari */}
+            <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10 p-4 md:p-6 rounded-[2rem] border border-border/60 bg-white/70 backdrop-blur-sm shadow-sm">
+              {veterinarians.map((member, index) => (
                 <div
                   key={member.name}
-                  className={`card-team bg-gradient-to-b from-white to-primary/5 border border-border/50 shadow-xl backdrop-blur transition-all duration-500 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  className={`group rounded-[2rem] overflow-hidden border border-border/60 bg-white shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 80}ms` }}
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <img
                       src={member.image}
                       alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       onError={(e) => {
                         const target = e.currentTarget;
                         target.onerror = null;
                         target.src = "/placeholder.svg";
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-foreground/15 to-transparent rounded-3xl" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/25 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1.5">
                       <h3 className="font-heading font-bold text-xl leading-tight drop-shadow-sm">{member.name}</h3>
                       <p className="text-white/90 text-sm font-medium leading-tight">{member.role}</p>
                       <p className="text-white/85 text-xs leading-tight">{member.specialty}</p>
                     </div>
                   </div>
-                  <div className="p-6 md:p-7 space-y-4 bg-white rounded-3xl">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                  <div className="p-6 md:p-7 space-y-4">
+                    <div className="flex flex-wrap gap-2.5">
+                      <span className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full ring-1 ring-primary/20">
                         {member.role}
                       </span>
-                      <span className="px-3 py-1.5 bg-amber-50 text-amber-600 text-xs font-semibold rounded-full">
+                      <span className="px-3 py-1.5 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full ring-1 ring-amber-100">
                         {member.specialty}
                       </span>
                     </div>
-                    <div className="space-y-3 text-foreground/90 text-[15.5px] leading-7 text-balance whitespace-pre-line">
+                    <div className="space-y-3 text-foreground/90 text-[15.5px] leading-7 whitespace-pre-line">
                       <div
                         style={
                           expanded[member.name]
@@ -159,44 +167,44 @@ export default function Echipa() {
               ))}
             </div>
 
-            {/* Row 2: ceilalți 3 */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-              {teamMembers.slice(2).map((member, index) => (
+            {/* Row 2: Studenți */}
+            <div className="flex flex-wrap justify-center gap-8 lg:gap-10 p-4 md:p-6 rounded-[2rem] border border-border/60 bg-white/70 backdrop-blur-sm shadow-sm">
+              {students.map((member, index) => (
                 <div
                   key={member.name}
-                  className={`card-team bg-gradient-to-b from-white to-primary/5 border border-border/50 shadow-xl backdrop-blur transition-all duration-500 ${
-                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                  className={`group w-full sm:basis-[calc(50%-1rem)] xl:basis-[calc(33.333%-1.75rem)] max-w-[420px] rounded-[2rem] overflow-hidden border border-border/60 bg-white shadow-md hover:shadow-xl hover:-translate-y-1.5 transition-all duration-500 ${
+                    isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                   }`}
                   style={{ transitionDelay: `${index * 80}ms` }}
                 >
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-3xl">
+                  <div className="relative aspect-[4/5] overflow-hidden">
                     <img
                       src={member.image}
                       alt={`${member.name} - ${member.role} la Vet Option Timișoara`}
-                      className="w-full h-full object-cover object-top"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                       onError={(e) => {
                         const target = e.currentTarget;
                         target.onerror = null;
                         target.src = "/placeholder.svg";
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/65 via-foreground/15 to-transparent rounded-3xl" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/75 via-foreground/25 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1.5">
                       <h3 className="font-heading font-bold text-xl leading-tight drop-shadow-sm">{member.name}</h3>
                       <p className="text-white/90 text-sm font-medium leading-tight">{member.role}</p>
                       <p className="text-white/85 text-xs leading-tight">{member.specialty}</p>
                     </div>
                   </div>
-                  <div className="p-6 md:p-7 space-y-4 bg-white rounded-3xl">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                  <div className="p-6 md:p-7 space-y-4">
+                    <div className="flex flex-wrap gap-2.5">
+                      <span className="px-3 py-1.5 bg-primary/10 text-primary text-xs font-semibold rounded-full ring-1 ring-primary/20">
                         {member.role}
                       </span>
-                      <span className="px-3 py-1.5 bg-amber-50 text-amber-600 text-xs font-semibold rounded-full">
+                      <span className="px-3 py-1.5 bg-amber-50 text-amber-700 text-xs font-semibold rounded-full ring-1 ring-amber-100">
                         {member.specialty}
                       </span>
                     </div>
-                    <div className="space-y-3 text-foreground/90 text-[15.5px] leading-7 text-balance">
+                    <div className="space-y-3 text-foreground/90 text-[15.5px] leading-7">
                       {member.bio}
                     </div>
                   </div>
@@ -209,7 +217,9 @@ export default function Echipa() {
         {/* Join team */}
         <section className="py-20 bg-white">
           <div className="container-custom">
-            <div className="bg-gradient-to-br from-primary-light to-teal-50 rounded-3xl p-8 md:p-12 text-center max-w-3xl mx-auto">
+            <div className="relative overflow-hidden bg-gradient-to-br from-primary-light via-white to-teal-50 rounded-[2rem] p-8 md:p-12 text-center max-w-3xl mx-auto border border-border/60 shadow-sm">
+              <div className="absolute -top-20 -right-16 w-48 h-48 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute -bottom-20 -left-16 w-48 h-48 bg-accent/10 rounded-full blur-3xl" />
               <h2 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-4">
                 Vrei să faci parte din echipa noastră?
               </h2>
@@ -225,7 +235,7 @@ export default function Echipa() {
         </section>
 
         {/* CTA */}
-        <section className="py-20 bg-primary text-primary-foreground">
+        <section className="py-20 bg-gradient-to-r from-primary to-primary-dark text-primary-foreground">
           <div className="container-custom text-center">
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
               Programează o consultație
