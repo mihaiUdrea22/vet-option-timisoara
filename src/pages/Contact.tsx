@@ -24,7 +24,7 @@ const contactInfo = [
   {
     icon: Clock,
     title: 'Program',
-    value: 'Luni–Vineri: 10:00 – 20:00\nUrgențe: ON CALL 24/7',
+    value: 'Luni–Vineri: 10:00 – 18:00\nUrgențe: ON CALL 24/7',
     color: 'bg-amber-50 text-amber-600',
   },
 ];

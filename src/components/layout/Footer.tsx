@@ -127,7 +127,7 @@ export default function Footer() {
                 <Clock className="w-5 h-5 mt-0.5 text-primary flex-shrink-0" />
                 <div>
                   <span className="block font-medium text-white">Program</span>
-                  <span className="text-gray-400">Luni–Vineri: 10:00 – 20:00</span><br />
+                  <span className="text-gray-400">Luni–Vineri: 10:00 – 18:00</span><br />
                   <span className="text-gray-400">Urgențe: ON CALL 24/7</span>
                 </div>
               </li>
