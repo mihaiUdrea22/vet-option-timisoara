@@ -1,7 +1,6 @@
 import Layout from '@/components/layout/Layout';
 import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from 'react-router-dom';
 import { Star, Quote } from 'lucide-react';
 
 const reviews = [
@@ -158,9 +157,12 @@ export default function Recenzii() {
             <p className="text-white/80 mb-8 max-w-xl mx-auto text-lg">
               Programează o vizită și descoperă singur de ce ne aleg proprietarii din Timișoara.
             </p>
-            <Link to="/contact" className="btn-accent px-8 py-4 text-base">
+            <a
+              href="https://vet.digitail.io/clinics/vet-option-clinic"
+              className="btn-accent px-8 py-4 text-base"
+            >
               Programează o consultație
-            </Link>
+            </a>
           </div>
         </section>
       </Layout>

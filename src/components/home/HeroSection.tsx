@@ -1,14 +1,9 @@
-import { useState } from 'react';
 import { Phone, MapPin, Clock, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import BookingModal from '@/components/BookingModal';
 
 export default function HeroSection() {
-  const [bookingOpen, setBookingOpen] = useState(false);
-
   return (
     <>
-      <BookingModal open={bookingOpen} onClose={() => setBookingOpen(false)} />
     <section className="relative min-h-[100vh] flex items-center pt-28">
       {/* Background Image */}
       <div className="absolute inset-0">
@@ -51,13 +46,13 @@ export default function HeroSection() {
                 Sună acum – Urgențe ON CALL 24/7
               </Button>
             </a>
-            <Button
-              onClick={() => setBookingOpen(true)}
-              className="w-full sm:w-auto text-base px-8 py-4 h-auto gap-2 rounded-2xl bg-white/15 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all"
+            <a
+              href="https://vet.digitail.io/clinics/vet-option-clinic"
+              className="inline-flex items-center justify-center w-full sm:w-auto text-base px-8 py-4 h-auto gap-2 rounded-2xl bg-white/15 backdrop-blur-sm text-white border-2 border-white/30 hover:bg-white/25 hover:border-white/50 transition-all"
             >
               Programează o consultație
               <ChevronRight className="w-5 h-5" />
-            </Button>
+            </a>
           </div>
 
           {/* Info badges */}
