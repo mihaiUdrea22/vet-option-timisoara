@@ -12,11 +12,11 @@ const quickLinks = [
 ];
 
 const services = [
-  { name: 'Urgențe ON CALL 24/7', href: '/urgente' },
   { name: 'Chirurgie', href: '/servicii' },
-  { name: 'ATI Veterinar', href: '/servicii' },
-  { name: 'Consultații', href: '/servicii' },
-  { name: 'Imagistică', href: '/servicii' },
+  { name: 'Neurologie', href: '/servicii' },
+  { name: 'Medicină internă', href: '/servicii' },
+  { name: 'Medicină dentară', href: '/servicii' },
+  { name: 'Urgențe ON CALL 24/7 & ATI', href: '/urgente' },
 ];
 
 export default function Footer() {
@@ -42,7 +42,7 @@ export default function Footer() {
             </Link>
             <p className="text-sm leading-relaxed text-gray-400">
               Clinică Medicală Veterinară cu urgențe ON CALL 24/7 în Timișoara. Oferim servicii de chirurgie avansată, 
-              ATI și îngrijire completă pentru câini și pisici.
+              medicină internă și îngrijire completă pentru câini și pisici.
             </p>
             <div className="flex gap-3">
               <a
