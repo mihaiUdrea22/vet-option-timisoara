@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Heart, Shield, MessageCircle, BookOpen, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -61,13 +61,12 @@ export default function DespreNoi() {
 
   return (
     <>
-      <Helmet>
-        <title>Despre Noi | Vet Option Timișoara - Clinica Veterinară</title>
-        <meta 
-          name="description" 
-          content="Descoperă povestea Vet Option Timișoara - o echipă de medici veterinari dedicați, cu experiență în cazuri complexe și urgențe ON CALL 24/7." 
-        />
-      </Helmet>
+      <PageSEO
+        title="Despre Noi"
+        description="Descoperă povestea Vet Option Timișoara - o echipă de medici veterinari dedicați, cu experiență în cazuri complexe și urgențe ON CALL 24/7."
+        path="/despre"
+        keywords="Vet Option Timișoara, clinică veterinară, despre noi, echipă veterinară"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-32 pb-16 bg-gradient-to-b from-teal-50 to-white">

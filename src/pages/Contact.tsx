@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useState } from 'react';
 import { Phone, MapPin, Clock, MessageCircle, Send, CheckCircle } from 'lucide-react';
@@ -98,13 +98,12 @@ export default function Contact() {
 
   return (
     <>
-      <Helmet>
-        <title>Contact și Programări | Vet Option Timișoara - Clinica Veterinară</title>
-        <meta 
-          name="description" 
-          content="Contactează Vet Option Timișoara pentru programări și consultații. Adresă: Str. Ion Roată 48. Telefon urgențe ON CALL 24/7: +40 723 143 405" 
-        />
-      </Helmet>
+      <PageSEO
+        title="Contact și Programări"
+        description="Contactează Vet Option Timișoara pentru programări și consultații. Adresă: Str. Ion Roată 48. Telefon urgențe ON CALL 24/7: +40 723 143 405"
+        path="/contact"
+        keywords="contact Vet Option Timișoara, programări veterinar, adresă clinică veterinară, telefon urgențe veterinare"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/50 to-white">

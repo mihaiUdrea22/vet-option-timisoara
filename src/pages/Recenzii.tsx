@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import { Star, Quote } from 'lucide-react';
@@ -75,13 +75,12 @@ export default function Recenzii() {
 
   return (
     <>
-      <Helmet>
-        <title>Recenzii și Testimoniale | Vet Option Timișoara - Clinica Veterinară</title>
-        <meta 
-          name="description" 
-          content="Citește recenziile proprietarilor care au apelat la Vet Option Timișoara. Rating 4.9/5 cu peste 100 de recenzii de 5 stele." 
-        />
-      </Helmet>
+      <PageSEO
+        title="Recenzii și Testimoniale"
+        description="Citește recenziile proprietarilor care au apelat la Vet Option Timișoara. Rating 4.9/5 cu peste 100 de recenzii de 5 stele."
+        path="/recenzii"
+        keywords="recenzii Vet Option, clinică veterinară Timișoara recenzii, testimoniale veterinare"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-amber-50/50 to-white">

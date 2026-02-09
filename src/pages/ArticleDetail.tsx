@@ -5,6 +5,7 @@ import rehypeRaw from "rehype-raw";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/layout/Layout";
 import { supabase } from "@/lib/supabaseClient";
+import { SITE_URL, DEFAULT_OG_IMAGE, SITE_NAME } from "@/lib/seo";
 
 type Article = {
   id: string;
@@ -45,16 +46,47 @@ export default function ArticleDetail() {
     fetchArticle();
   }, [slug]);
 
+  const articleUrl = slug ? `${SITE_URL}/articole/${slug}` : SITE_URL;
+  const articleTitle = article?.title ? `${article.title} | ${SITE_NAME}` : `Articol | ${SITE_NAME}`;
+  const articleDescription = article?.excerpt || "Articol de la Vet Option Timișoara.";
+  const articleImage = article?.cover_image || DEFAULT_OG_IMAGE;
+
   return (
     <>
       <Helmet>
-        <title>
-          {article?.title
-            ? `${article.title} | Vet Option`
-            : "Articol | Vet Option"}
-        </title>
-        {article?.excerpt && (
-          <meta name="description" content={article.excerpt} />
+        <title>{articleTitle}</title>
+        <meta name="description" content={articleDescription} />
+        <link rel="canonical" href={articleUrl} />
+        <meta property="og:title" content={articleTitle} />
+        <meta property="og:description" content={articleDescription} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={articleUrl} />
+        <meta property="og:image" content={articleImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ro_RO" />
+        <meta property="og:site_name" content={SITE_NAME} />
+        {article?.created_at && (
+          <meta property="article:published_time" content={article.created_at} />
+        )}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={articleTitle} />
+        <meta name="twitter:description" content={articleDescription} />
+        <meta name="twitter:image" content={articleImage} />
+        {article && (
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Article",
+              headline: article.title,
+              description: article.excerpt || article.title,
+              image: article.cover_image || DEFAULT_OG_IMAGE,
+              datePublished: article.created_at,
+              author: { "@type": "Organization", name: SITE_NAME },
+              publisher: { "@type": "Organization", name: SITE_NAME, logo: { "@type": "ImageObject", url: `${SITE_URL}/og-image.png` } },
+              mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+            })}
+          </script>
         )}
       </Helmet>
       <Layout>

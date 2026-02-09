@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import PageSEO from "@/components/PageSEO";
 import { Clock, ChevronRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
@@ -58,7 +58,7 @@ export default function Articole() {
               <span className="text-primary font-medium text-sm uppercase tracking-wider">
                 Blog
               </span>
-              <h1 className="section-title mt-4">Articole & Sfaturi</h1>
+              <h1 className="section-title mt-4">Educare și informare proprietar</h1>
               <p className="section-subtitle mx-auto mt-6">
                 Informații utile pentru sănătatea și bunăstarea animalului tău
                 de companie, scrise de echipa noastră de medici veterinari.

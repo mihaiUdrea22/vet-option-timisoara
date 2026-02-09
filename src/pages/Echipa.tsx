@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import { Phone } from 'lucide-react';
@@ -70,13 +70,12 @@ export default function Echipa() {
 
   return (
     <>
-      <Helmet>
-        <title>Echipa Medicală | Vet Option Timișoara - Clinica Veterinară</title>
-        <meta 
-          name="description" 
-          content="Cunoaște echipa de medici și tehnicieni veterinari de la Vet Option Timișoara. Profesioniști dedicați îngrijirii câinilor și pisicilor." 
-        />
-      </Helmet>
+      <PageSEO
+        title="Echipa Medicală"
+        description="Cunoaște echipa de medici și tehnicieni veterinari de la Vet Option Timișoara. Profesioniști dedicați îngrijirii câinilor și pisicilor."
+        path="/echipa"
+        keywords="echipă veterinară Timișoara, medici veterinari, Vet Option echipă"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/50 to-white">

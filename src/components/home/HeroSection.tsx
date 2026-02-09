@@ -39,7 +39,7 @@ export default function HeroSection() {
 
           {/* Subheadline */}
           <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-in-up delay-200">
-            Chirurgie avansată, ATI și îngrijire completă pentru câini și pisici, 
+            Chirurgie avansată, medicină internă și îngrijire completă pentru câini și pisici, 
             într-o clinică unde fiecare pacient este tratat ca un membru al familiei.
           </p>
 

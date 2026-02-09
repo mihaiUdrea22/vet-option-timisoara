@@ -1,22 +1,28 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 /**
- * La fiecare schimbare de rută, face scroll la topul paginii.
- * Folosim requestAnimationFrame ca scroll-ul să aibă loc după ce noua pagină s-a randat.
+ * La fiecare schimbare de rută, resetează poziția scroll la top.
+ * Dezactivează și restaurarea automată a poziției de către browser.
  */
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
 
   useEffect(() => {
-    const scroll = () => window.scrollTo(0, 0);
-    // Rulează după ce browser-ul a randat frame-ul curent, ca noua pagină să fie deja vizibilă
-    const id = requestAnimationFrame(() => {
-      scroll();
-      requestAnimationFrame(scroll); // al doilea rAF pentru după paint
-    });
-    return () => cancelAnimationFrame(id);
-  }, [pathname]);
+    if ('scrollRestoration' in window.history) {
+      const previous = window.history.scrollRestoration;
+      window.history.scrollRestoration = 'manual';
+      return () => {
+        window.history.scrollRestoration = previous;
+      };
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, [pathname, search]);
 
   return null;
 }

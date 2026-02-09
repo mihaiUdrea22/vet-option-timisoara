@@ -2,61 +2,70 @@ import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { 
   Siren, 
-  HeartPulse, 
   Stethoscope, 
   Brain, 
   ShieldCheck, 
   Microscope,
+  Smile,
+  BedDouble,
   ChevronRight
 } from 'lucide-react';
 
 const services = [
   {
-    icon: Siren,
-    title: 'Urgențe veterinare ON CALL 24/7',
-    description: 'Disponibili 24/7 pentru orice situație critică. Intervenții rapide și eficiente.',
-    color: 'text-red-500',
-    bgColor: 'bg-red-50',
-  },
-  {
-    icon: HeartPulse,
-    title: 'ATI & Terapie intensivă',
-    description: 'Monitorizare continuă și tratament specializat pentru pacienții în stare critică.',
-    color: 'text-primary',
-    bgColor: 'bg-primary-light',
-  },
-  {
     icon: Stethoscope,
-    title: 'Chirurgie & ortopedie',
-    description: 'Intervenții chirurgicale complexe, de la operații de rutină la ortopedie avansată.',
+    title: 'Chirurgie generală, ortopedie și neurochirurgie',
+    description: 'Intervenții chirurgicale complexe, de la operații de rutină până la cazuri avansate.',
     color: 'text-teal-600',
     bgColor: 'bg-teal-50',
   },
   {
     icon: Brain,
-    title: 'Neurochirurgie & artroscopie',
-    description: 'Proceduri minim invazive și intervenții neurochirurgicale de ultimă generație.',
+    title: 'Neurologie',
+    description: 'Evaluare neurologică și plan terapeutic pentru afecțiuni ale sistemului nervos.',
     color: 'text-purple-500',
     bgColor: 'bg-purple-50',
   },
   {
     icon: ShieldCheck,
-    title: 'Consultații & prevenție',
-    description: 'Vaccinări, deparazitări și control periodic pentru sănătatea companionului tău.',
+    title: 'Medicină internă, prevenție și vaccinări',
+    description: 'Consultații, vaccinări și prevenție pentru sănătatea companionului pe termen lung.',
     color: 'text-green-500',
     bgColor: 'bg-green-50',
   },
   {
+    icon: Smile,
+    title: 'Medicină dentară',
+    description: 'Diagnostic, tratament și profilaxie dentară pentru confort și sănătate orală.',
+    color: 'text-cyan-600',
+    bgColor: 'bg-cyan-50',
+  },
+  {
     icon: Microscope,
-    title: 'Analize & imagistică',
-    description: 'Diagnostic complet cu analize de sânge, ecografie și radiografie in-house.',
+    title: 'Analize de laborator',
+    description: 'Diagnostic de laborator cu analize de sânge și urină, cu rezultate rapide.',
     color: 'text-blue-500',
     bgColor: 'bg-blue-50',
+  },
+  {
+    icon: BedDouble,
+    title: 'Internare & spitalizare',
+    description: 'Supraveghere medicală continuă și îngrijire personalizată pentru pacienții internați.',
+    color: 'text-amber-500',
+    bgColor: 'bg-amber-50',
+  },
+  {
+    icon: Siren,
+    title: 'Urgențe veterinare ON CALL 24/7 & ATI',
+    description: 'Disponibili 24/7 pentru orice situație critică, cu terapie intensivă și intervenții rapide.',
+    color: 'text-red-500',
+    bgColor: 'bg-red-50',
   },
 ];
 
 export default function ServicesSection() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
+  const previewServices = services.slice(0, 6);
 
   return (
     <section className="section-padding bg-gray-50/70">
@@ -78,7 +87,7 @@ export default function ServicesSection() {
 
         {/* Services grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => (
+          {previewServices.map((service, index) => (
             <div
               key={service.title}
               className={`card-service group transition-all duration-500 text-center ${

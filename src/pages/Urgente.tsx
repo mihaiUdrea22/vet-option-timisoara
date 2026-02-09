@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Phone, AlertTriangle, Dog, Cat, ChevronDown, ChevronUp, MessageCircle, Car } from 'lucide-react';
 import { useState } from 'react';
@@ -76,13 +76,12 @@ export default function Urgente() {
 
   return (
     <>
-      <Helmet>
-        <title>Urgențe Veterinare ON CALL 24/7 | Vet Option Timișoara</title>
-        <meta 
-          name="description" 
-          content="Urgențe veterinare ON CALL 24/7 în Timișoara. Clinică medicală veterinară disponibilă 24/7 pentru câini și pisici. Sună acum: +40 723 143 405" 
-        />
-      </Helmet>
+      <PageSEO
+        title="Urgențe Veterinare ON CALL 24/7"
+        description="Urgențe veterinare ON CALL 24/7 în Timișoara. Clinică medicală veterinară disponibilă 24/7 pentru câini și pisici. Sună acum: +40 723 143 405"
+        path="/urgente"
+        keywords="urgențe veterinare Timișoara, veterinar 24/7, urgențe câini pisici, veterinar ON CALL"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-36 pb-16 bg-gradient-to-b from-red-50/70 to-white">

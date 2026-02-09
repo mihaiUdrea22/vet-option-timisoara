@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { 
   Siren, HeartPulse, Stethoscope, Brain, ShieldCheck, 
@@ -7,28 +7,6 @@ import {
 } from 'lucide-react';
 
 const services = [
-  {
-    id: 'urgente',
-    icon: Siren,
-    title: 'Urgențe veterinare ON CALL 24/7 & ATI',
-    description: 'Suntem disponibili 24 de ore din 24, 7 zile din 7, pentru orice urgență veterinară. Echipa noastră de terapie intensivă este pregătită să intervină rapid și eficient.',
-    features: [
-      'Disponibilitate ON CALL 24/7, inclusiv în weekend și sărbători',
-      'Echipă specializată în terapie intensivă veterinară',
-      'Monitorizare continuă pentru pacienții critici',
-      'Echipamente de resuscitare și suport vital',
-      'Intervenții de urgență pentru traumatisme grave',
-    ],
-    situations: [
-      'Accidente rutiere sau traumatisme',
-      'Dilatație/torsiune gastrică',
-      'Intoxicații și otrăviri',
-      'Dificultăți respiratorii severe',
-      'Hemoragii sau colaps',
-    ],
-    color: 'text-red-500',
-    bgColor: 'bg-red-50',
-  },
   {
     id: 'chirurgie',
     icon: Stethoscope,
@@ -52,23 +30,23 @@ const services = [
     bgColor: 'bg-teal-50',
   },
   {
-    id: 'artroscopie',
+    id: 'neurologie',
     icon: Brain,
-    title: 'Artroscopie & endoscopie',
-    description: 'Proceduri minim invazive care permit diagnosticul și tratamentul multor afecțiuni cu recuperare mai rapidă și mai puține complicații.',
+    title: 'Neurologie',
+    description: 'Evaluare neurologică și management dedicat pentru afecțiuni ale creierului, măduvei și nervilor periferici.',
     features: [
-      'Explorare articulară minim invazivă',
-      'Endoscopie digestivă și respiratorie',
-      'Extragerea corpurilor străine',
-      'Biopsii țintite',
-      'Recuperare rapidă post-procedură',
+      'Consult neurologic complet',
+      'Localizarea leziunilor neurologice',
+      'Plan terapeutic personalizat',
+      'Monitorizare neurologică în evoluție',
+      'Indicații pentru intervenții neurochirurgicale',
     ],
     situations: [
-      'Dureri articulare de cauză necunoscută',
-      'Suspiciune de corpi străini înghițiți',
-      'Probleme gastro-intestinale cronice',
-      'Afecțiuni respiratorii cronice',
-      'Diagnostic de leziuni articulare',
+      'Hernie de disc suspectată',
+      'Slăbiciune sau paralizie instalată brusc',
+      'Crize convulsive recurente',
+      'Tulburări de mers și coordonare',
+      'Durere cervicală sau lombară persistentă',
     ],
     color: 'text-purple-500',
     bgColor: 'bg-purple-50',
@@ -76,7 +54,7 @@ const services = [
   {
     id: 'consultatii',
     icon: ShieldCheck,
-    title: 'Consultații, prevenție & vaccinări',
+    title: 'Medicină internă, prevenție și vaccinări',
     description: 'Controale regulate, vaccinări și deparazitări pentru a menține sănătatea animalului tău pe termen lung. Prevenția este cea mai bună medicină.',
     features: [
       'Consultații generale și de specialitate',
@@ -96,16 +74,38 @@ const services = [
     bgColor: 'bg-green-50',
   },
   {
+    id: 'dentara',
+    icon: Smile,
+    title: 'Medicină dentară',
+    description: 'Diagnostic, tratament și profilaxie dentară pentru a preveni durerea, infecțiile orale și complicațiile asociate.',
+    features: [
+      'Consultație stomatologică veterinară completă',
+      'Detartraj și igienizare dentară profesională',
+      'Evaluarea gingiilor și a afecțiunilor parodontale',
+      'Extracții dentare când sunt necesare',
+      'Recomandări de îngrijire dentară la domiciliu',
+    ],
+    situations: [
+      'Miros neplăcut persistent al gurii',
+      'Tartru vizibil și gingii inflamate',
+      'Dificultăți la mestecat sau scăderea apetitului',
+      'Durere orală sau salivare excesivă',
+      'Control dentar periodic preventiv',
+    ],
+    color: 'text-cyan-600',
+    bgColor: 'bg-cyan-50',
+  },
+  {
     id: 'diagnostic',
     icon: Microscope,
-    title: 'Analize de laborator & imagistică',
-    description: 'Diagnostic complet cu tehnologie modernă: analize de sânge și urină, ecografie, radiografie și multe altele pentru un diagnostic precis.',
+    title: 'Analize de laborator',
+    description: 'Diagnostic de laborator cu analize de sânge și urină pentru evaluarea corectă a stării de sănătate.',
     features: [
       'Analize hematologice și biochimice',
       'Analize de urină și examen coproparazitologic',
-      'Ecografie abdominală și cardiacă',
-      'Radiografie digitală',
       'Rezultate rapide în clinică',
+      'Interpretare medicală și recomandări de tratament',
+      'Monitorizarea evoluției în timp',
     ],
     situations: [
       'Verificare înainte de anestezie/operație',
@@ -139,6 +139,28 @@ const services = [
     color: 'text-amber-500',
     bgColor: 'bg-amber-50',
   },
+  {
+    id: 'urgente',
+    icon: Siren,
+    title: 'Urgențe veterinare ON CALL 24/7 & ATI',
+    description: 'Suntem disponibili 24 de ore din 24, 7 zile din 7, pentru orice urgență veterinară. Echipa noastră de terapie intensivă este pregătită să intervină rapid și eficient.',
+    features: [
+      'Disponibilitate ON CALL 24/7, inclusiv în weekend și sărbători',
+      'Echipă specializată în terapie intensivă veterinară',
+      'Monitorizare continuă pentru pacienții critici',
+      'Echipamente de resuscitare și suport vital',
+      'Intervenții de urgență pentru traumatisme grave',
+    ],
+    situations: [
+      'Accidente rutiere sau traumatisme',
+      'Dilatație/torsiune gastrică',
+      'Intoxicații și otrăviri',
+      'Dificultăți respiratorii severe',
+      'Hemoragii sau colaps',
+    ],
+    color: 'text-red-500',
+    bgColor: 'bg-red-50',
+  },
 ];
 
 export default function Servicii() {
@@ -146,13 +168,12 @@ export default function Servicii() {
 
   return (
     <>
-      <Helmet>
-        <title>Servicii Veterinare | Vet Option Timișoara - Urgențe, Chirurgie, ATI</title>
-        <meta 
-          name="description" 
-          content="Servicii complete de medicină veterinară: urgențe ON CALL 24/7, chirurgie, ATI, neurochirurgie, consultații și imagistică pentru câini și pisici în Timișoara." 
-        />
-      </Helmet>
+      <PageSEO
+        title="Servicii Veterinare"
+        description="Servicii complete de medicină veterinară: urgențe ON CALL 24/7, chirurgie, ATI, neurochirurgie, consultații și analize de laborator pentru câini și pisici în Timișoara."
+        path="/servicii"
+        keywords="servicii veterinare Timișoara, urgențe veterinare, chirurgie veterinară, ATI veterinar, consultații câini pisici"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-32 pb-16 bg-gradient-to-b from-teal-50 to-white">

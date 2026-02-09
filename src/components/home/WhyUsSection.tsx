@@ -15,7 +15,7 @@ const reasons = [
   {
     icon: Settings,
     title: 'Dotări moderne',
-    description: 'Echipamente de ultimă generație pentru ATI, chirurgie, artroscopie, endoscopie și imagistică.',
+    description: 'Echipamente de ultimă generație pentru ATI, chirurgie, artroscopie și endoscopie.',
   },
   {
     icon: Users,

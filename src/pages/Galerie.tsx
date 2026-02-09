@@ -1,7 +1,7 @@
-import { Helmet } from 'react-helmet-async';
 import Layout from '@/components/layout/Layout';
+import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Instagram, Facebook, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Instagram, Facebook, ExternalLink, ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useMemo, useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabaseClient';
 
@@ -11,6 +11,7 @@ export default function Galerie() {
   const { ref, isVisible } = useScrollAnimation<HTMLDivElement>();
   const pageSize = 6;
   const [page, setPage] = useState(1);
+  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
   const [galleryImages, setGalleryImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -32,16 +33,61 @@ export default function Galerie() {
     () => galleryImages.slice((safePage - 1) * pageSize, safePage * pageSize),
     [galleryImages, safePage]
   );
+  const currentImage = activeImageIndex !== null ? galleryImages[activeImageIndex] : null;
+  const visiblePages = useMemo(() => {
+    const start = Math.max(1, safePage - 2);
+    const end = Math.min(totalPages, safePage + 2);
+    return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+  }, [safePage, totalPages]);
+
+  const closeLightbox = () => setActiveImageIndex(null);
+
+  const goToNextImage = () => {
+    if (galleryImages.length === 0 || activeImageIndex === null) return;
+    setActiveImageIndex((activeImageIndex + 1) % galleryImages.length);
+  };
+
+  const goToPrevImage = () => {
+    if (galleryImages.length === 0 || activeImageIndex === null) return;
+    setActiveImageIndex((activeImageIndex - 1 + galleryImages.length) % galleryImages.length);
+  };
+
+  useEffect(() => {
+    if (activeImageIndex === null) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveImageIndex(null);
+      if (event.key === 'ArrowRight') {
+        setActiveImageIndex((prev) => {
+          if (prev === null || galleryImages.length === 0) return prev;
+          return (prev + 1) % galleryImages.length;
+        });
+      }
+      if (event.key === 'ArrowLeft') {
+        setActiveImageIndex((prev) => {
+          if (prev === null || galleryImages.length === 0) return prev;
+          return (prev - 1 + galleryImages.length) % galleryImages.length;
+        });
+      }
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [activeImageIndex, galleryImages.length]);
 
   return (
     <>
-      <Helmet>
-        <title>Galerie Foto | Vet Option Timișoara - Clinica Veterinară</title>
-        <meta 
-          name="description" 
-          content="Galerie foto cu pacienții și echipa Vet Option Timișoara. Urmărește-ne pe Instagram și Facebook pentru povești din clinică." 
-        />
-      </Helmet>
+      <PageSEO
+        title="Galerie Foto"
+        description="Galerie foto cu pacienții și echipa Vet Option Timișoara. Urmărește-ne pe Instagram și Facebook pentru povești din clinică."
+        path="/galerie"
+        keywords="galerie Vet Option, clinică veterinară Timișoara foto, pacienți câini pisici"
+      />
       <Layout>
         {/* Hero */}
         <section className="pt-36 pb-16 md:pb-20 bg-gradient-to-b from-teal-50/50 to-white">
@@ -72,22 +118,26 @@ export default function Galerie() {
                   {pagedImages.map((image, index) => (
                     <div
                       key={image.id}
-                      className={`relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden group transition-all duration-500 ${
+                      className={`relative aspect-square rounded-2xl md:rounded-3xl overflow-hidden group transition-all duration-500 cursor-zoom-in ${
                         isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                       }`}
                       style={{ transitionDelay: `${index * 30}ms` }}
+                      onClick={() => setActiveImageIndex((safePage - 1) * pageSize + index)}
+                      role="button"
+                      tabIndex={0}
+                      aria-label={`Deschide imaginea ${index + 1}`}
+                      onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                          event.preventDefault();
+                          setActiveImageIndex((safePage - 1) * pageSize + index);
+                        }
+                      }}
                     >
                       <img
                         src={image.url}
                         alt={image.alt || 'Galerie'}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/40 transition-colors duration-300 flex items-center justify-center">
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-center">
-                          <Instagram className="w-8 h-8 text-white mx-auto mb-2" />
-                          <span className="text-white text-sm font-medium">Vezi pe Instagram</span>
-                        </div>
-                      </div>
                     </div>
                   ))}
                 </div>
@@ -95,7 +145,7 @@ export default function Galerie() {
                   <span>
                     Pagina {safePage} / {totalPages} · {galleryImages.length} imagini
                   </span>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap justify-center">
                     <button
                       onClick={() => setPage((p) => Math.max(1, p - 1))}
                       disabled={safePage === 1}
@@ -112,12 +162,80 @@ export default function Galerie() {
                       Înainte
                       <ChevronRight className="w-4 h-4" />
                     </button>
+                    {visiblePages.map((pageNo) => (
+                      <button
+                        key={pageNo}
+                        onClick={() => setPage(pageNo)}
+                        className={`h-8 min-w-8 px-2 rounded-full border transition-colors ${
+                          pageNo === safePage
+                            ? 'bg-primary text-white border-primary'
+                            : 'hover:bg-gray-50 border-gray-200'
+                        }`}
+                        aria-label={`Mergi la pagina ${pageNo}`}
+                      >
+                        {pageNo}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </>
             )}
           </div>
         </section>
+
+        {currentImage && (
+          <div
+            className="fixed inset-0 z-[100] bg-black/90 p-4 md:p-8 flex items-center justify-center"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Vizualizare imagine"
+            onClick={closeLightbox}
+          >
+            <button
+              onClick={closeLightbox}
+              className="absolute top-4 right-4 md:top-6 md:right-6 text-white/90 hover:text-white transition-colors"
+              aria-label="Închide"
+            >
+              <X className="w-8 h-8" />
+            </button>
+
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                goToPrevImage();
+              }}
+              className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-all"
+              aria-label="Imaginea anterioară"
+            >
+              <ChevronLeft className="w-8 h-8" />
+            </button>
+
+            <button
+              onClick={(event) => {
+                event.stopPropagation();
+                goToNextImage();
+              }}
+              className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 text-white/90 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition-all"
+              aria-label="Imaginea următoare"
+            >
+              <ChevronRight className="w-8 h-8" />
+            </button>
+
+            <figure
+              className="max-w-6xl w-full h-full flex flex-col items-center justify-center"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <img
+                src={currentImage.url}
+                alt={currentImage.alt || 'Imagine galerie'}
+                className="max-h-[80vh] w-auto max-w-full object-contain rounded-xl"
+              />
+              <figcaption className="mt-4 text-white/90 text-sm text-center">
+                {activeImageIndex !== null ? `${activeImageIndex + 1} / ${galleryImages.length}` : ''}
+              </figcaption>
+            </figure>
+          </div>
+        )}
 
         {/* Social CTA */}
         <section className="py-20 bg-gray-50/70">
