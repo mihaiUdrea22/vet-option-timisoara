@@ -6,6 +6,7 @@ const quickLinks = [
   { name: 'Acasă', href: '/' },
   { name: 'Despre noi', href: '/despre' },
   { name: 'Servicii', href: '/servicii' },
+  { name: 'Tarife', href: '/tarife' },
   { name: 'Urgențe 24/7', href: '/urgente' },
   { name: 'Echipa', href: '/echipa' },
   { name: 'Contact', href: '/contact' },

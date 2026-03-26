@@ -5,6 +5,7 @@ import {
   Siren, HeartPulse, Stethoscope, Brain, ShieldCheck, 
   Microscope, BedDouble, Phone, Check, Bone, Eye, Smile, Activity
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const services = [
   {
@@ -252,13 +253,19 @@ export default function Servicii() {
             <h2 className="text-2xl md:text-3xl font-heading font-bold mb-4">
               Nu ești sigur ce serviciu are nevoie companionul tău?
             </h2>
-            <p className="text-white/80 mb-8 max-w-xl mx-auto">
-              Sună-ne și te ghidăm. Echipa noastră este aici să răspundă la orice întrebare.
+            <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+              Sună-ne și te ghidăm. Dacă vrei să verifici rapid prețurile orientative,
+              am pregătit și o pagină dedicată de tarife.
             </p>
-            <a href="tel:+40723143405" className="btn-accent px-8 py-4 text-base">
-              <Phone className="w-5 h-5" />
-              Sună acum: +40 723 143 405
-            </a>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="tel:+40723143405" className="btn-accent px-8 py-4 text-base">
+                <Phone className="w-5 h-5" />
+                Sună acum: +40 723 143 405
+              </a>
+              <Link to="/tarife" className="btn-white px-8 py-4 text-base inline-flex items-center justify-center">
+                Vezi tarifele
+              </Link>
+            </div>
           </div>
         </section>
       </Layout>

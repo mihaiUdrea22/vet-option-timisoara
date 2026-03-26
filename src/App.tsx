@@ -9,6 +9,7 @@ import ScrollToTopButton from "@/components/ScrollToTopButton";
 import Index from "./pages/Index";
 import DespreNoi from "./pages/DespreNoi";
 import Servicii from "./pages/Servicii";
+import Tarife from "./pages/Tarife";
 import Urgente from "./pages/Urgente";
 import Echipa from "./pages/Echipa";
 import Recenzii from "./pages/Recenzii";
@@ -48,6 +49,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/despre" element={<DespreNoi />} />
             <Route path="/servicii" element={<Servicii />} />
+            <Route path="/tarife" element={<Tarife />} />
             <Route path="/urgente" element={<Urgente />} />
             <Route path="/echipa" element={<Echipa />} />
             <Route path="/recenzii" element={<Recenzii />} />

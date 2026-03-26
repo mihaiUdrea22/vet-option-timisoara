@@ -1,7 +1,19 @@
 import Layout from '@/components/layout/Layout';
 import PageSEO from '@/components/PageSEO';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Phone, AlertTriangle, Dog, Cat, ChevronDown, ChevronUp, MessageCircle, Car } from 'lucide-react';
+import {
+  Phone,
+  AlertTriangle,
+  Dog,
+  Cat,
+  ChevronDown,
+  ChevronUp,
+  MessageCircle,
+  Car,
+  Clock3,
+  Receipt,
+  Wrench,
+} from 'lucide-react';
 import { useState } from 'react';
 
 const dogSigns = [
@@ -62,11 +74,36 @@ const faqs = [
   },
   {
     question: 'Ce costă o consultație de urgență?',
-    answer: 'Costurile variază în funcție de gravitatea cazului și de intervențiile necesare. Te vom informa despre costuri înainte de orice procedură și vom discuta opțiunile disponibile.',
+    answer: 'Consultația de urgență este 200 lei în intervalul 18:00 - 00:00 și în weekend, respectiv 300 lei în intervalul 00:00 - 10:00. Pentru manoperă și taxa de urgență se aplică tarifele afișate mai jos.',
   },
   {
     question: 'Pot plăti cu cardul?',
     answer: 'Da, acceptăm plata cu cardul, numerar și transfer bancar. În situații de urgență, nu amâna vizita din cauza costurilor – putem discuta opțiuni de plată.',
+  },
+];
+
+const emergencyTariffs = [
+  {
+    title: 'Manoperă în regim de urgență',
+    description:
+      'Tariful manoperei este dublu față de tariful standard aplicat în timpul programului obișnuit.',
+    icon: Wrench,
+  },
+  {
+    title: 'Consultație în regim de urgență',
+    description: [
+      'Interval 18:00 - 00:00 și weekend: 200 lei',
+      'Interval 00:00 - 10:00: 300 lei',
+    ],
+    icon: Clock3,
+  },
+  {
+    title: 'Taxă de urgență',
+    description: [
+      'Interval 18:00 - 00:00 și weekend: 200 lei',
+      'Interval 00:00 - 10:00: 300 lei',
+    ],
+    icon: Receipt,
   },
 ];
 
@@ -143,6 +180,54 @@ export default function Urgente() {
                   <p className="text-white/80 text-[15px]">{step.description}</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Emergency Tariffs */}
+        <section className="section-padding bg-white">
+          <div className="container-custom">
+            <div className="max-w-3xl mx-auto text-center mb-14">
+              <span className="section-label">Informare tarife</span>
+              <h2 className="section-title mt-4">Regim de urgență</h2>
+              <p className="section-subtitle mx-auto mt-6">
+                Pentru serviciile medicale efectuate în regim de urgență, în afara programului
+                de lucru, se aplică următoarele tarife.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-6">
+              {emergencyTariffs.map((item) => (
+                <div key={item.title} className="card-feature h-full">
+                  <div className="w-14 h-14 bg-red-50 rounded-2xl flex items-center justify-center mb-5">
+                    <item.icon className="w-7 h-7 text-red-600" />
+                  </div>
+                  <h3 className="font-heading font-semibold text-xl text-foreground mb-4">
+                    {item.title}
+                  </h3>
+
+                  {Array.isArray(item.description) ? (
+                    <ul className="space-y-3">
+                      {item.description.map((line) => (
+                        <li key={line} className="flex items-start gap-3 text-muted-foreground">
+                          <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-[15px] leading-relaxed">{line}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-muted-foreground text-[15px] leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="max-w-4xl mx-auto mt-8 bg-amber-50 border border-amber-200 rounded-2xl p-6 md:p-7 text-center">
+              <p className="text-foreground font-medium leading-relaxed">
+                Vă mulțumim pentru înțelegere și pentru încrederea acordată!
+              </p>
             </div>
           </div>
         </section>
